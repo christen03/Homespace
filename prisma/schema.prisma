@@ -15,35 +15,35 @@ datasource db {
 }
 
 model Post {
-    id        String @id @default(auto()) @map("_id") @db.ObjectId
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    createdById String @db.ObjectId
-    createdBy   User   @relation(fields: [createdById], references: [id])
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    createdById String   @db.ObjectId
+    createdBy   User     @relation(fields: [createdById], references: [id])
 
     @@index([name])
 }
 
 // Necessary for Next auth
 model Account {
-  id                 String @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String  @map("user_id") @db.ObjectId
-  type               String
-  provider           String
-  providerAccountId  String  @map("provider_account_id")
-  refresh_token      String? @db.String
-  access_token       String? @db.String
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String? @db.String
-  session_state      String?
+    id                String  @id @default(auto()) @map("_id") @db.ObjectId
+    userId            String  @map("user_id") @db.ObjectId
+    type              String
+    provider          String
+    providerAccountId String  @map("provider_account_id")
+    refresh_token     String? @db.String
+    access_token      String? @db.String
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String? @db.String
+    session_state     String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
-  @@map("accounts")
+    @@unique([provider, providerAccountId])
+    @@map("accounts")
 }
 
 model Session {
@@ -70,7 +70,7 @@ model User {
 }
 
 model VerificationToken {
-    id String @id @default(auto()) @map("_id") @db.ObjectId
+    id         String   @id @default(auto()) @map("_id") @db.ObjectId
     identifier String
     token      String   @unique
     expires    DateTime
@@ -80,11 +80,13 @@ model VerificationToken {
 }
 
 model Listing {
-    id       String @id @default(auto()) @map("_id") @db.ObjectId
-    info     String
-    price    Int
-    bedrooms Int
-    bathrooms Int
-    occupants Int
-    schoolDistance Int
+    id             String @id @default(auto()) @map("_id") @db.ObjectId
+    title          String
+    price          Int
+    bedrooms       Int
+    bathrooms      Int
+    occupants      Int
+    schoolDistance String
+
+    @@map("listings")
 }
