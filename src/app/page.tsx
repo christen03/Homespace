@@ -3,11 +3,16 @@ import Link from "next/link";
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
+import { redirect } from "next/navigation"
 
 export default async function Home() {
   const hello = await api.post.hello.query({ text: "from tRPC" });
   const hello2 = await api.test.greeting.query();
   const session = await getServerAuthSession();
+
+  if(session){
+    redirect("/dashboard")
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
