@@ -5,7 +5,7 @@ import {
 } from "~/server/api/trpc";
 
 export const listingRouter = createTRPCRouter({
-  getMany: protectedProcedure.query(({ ctx }) => {
+  getMany: publicProcedure.query(({ ctx }) => {
     return ctx.db.listing.findMany();
   }), // createOne: protectedProcedure.input(z.object({
   //   title: z.string().min(1),
