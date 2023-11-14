@@ -33,10 +33,11 @@ export default async function Dashboard() {
             <span className="font-bold leading-normal text-teal-600">
               Lynkpad
             </span>
-            {session ? ", " + firstName : ""}! Here are some listings for you to find your next home:
+            {session ? ", " + firstName : ""}! Here are some listings for you to
+            find your next home:
           </h1>
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-4 mb-20">
+        <div className="mb-20 mt-8 grid grid-cols-1 gap-6 sm:grid-cols-4 md:grid-cols-2">
           {listings.map((listing) => (
             <ListingCard
               key={listing.id}
