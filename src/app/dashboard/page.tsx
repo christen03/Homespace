@@ -4,39 +4,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ListingsInfo from "../_components/ListingsInfo";
+import SessionInfo from "../_components/session-info";
 
-// function RedirectToCreateListing() {
-//   const router = useRouter();
-//   const redirectUser = () => {
-//     router.push("/create-listing");
-//   };
 
-//   return (
-//     <div
-//       onClick={redirectUser}
-//       className="
-//         hidden
-//         md:block
-//         text-sm 
-//         font-semibold 
-//         py-3 
-//         px-4 
-//         rounded-full 
-//         hover:bg-neutral-100 
-//         transition 
-//         cursor-pointer
-//       "
-//     >
-//       Airbnb your home
-//     </div>
-//   );
-// }
 
 const Dashboard = () => {
   return (
-    <div>
+    <main>
+      <SessionInfo />
       <ListingsInfo />
-    </div>
+    </main>
   );
 };
 

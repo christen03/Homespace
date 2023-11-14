@@ -8,11 +8,13 @@ import def from "../../../public/default.jpg";
 import { FaM, FaMarsAndVenus } from "react-icons/fa6";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import {useRouter} from "next/navigation";
 
 function Navbar() {
   // Assuming getServerAuthSession returns an object with user information
   const { data: session, status, update } = useSession();
   const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
 
   function toggleMenu() {
     if (!showMenu) {
@@ -75,7 +77,7 @@ function Navbar() {
           </div>
           <div className="flex items-center justify-center gap-1 rounded-[100px] bg-teal-300 px-6 py-3 hover:bg-teal-400">
             <Link
-              href="/dashboard"
+              href="/create-listing"
               className="text-center text-base font-semibold leading-snug tracking-tight text-black"
             >
               Lynk Your Apartment
@@ -128,7 +130,7 @@ function Navbar() {
             </div>
             <div className="flex items-center justify-center gap-1 rounded-[100px] bg-teal-300 px-6 py-3 hover:bg-teal-400">
               <Link
-                href="/dashboard"
+                href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-black"
               >
                 Lynk Your Apartment
