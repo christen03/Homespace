@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-import { s3 } from "~/server/db";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import {
   createTRPCRouter,
@@ -34,7 +33,7 @@ export const listingRouter = createTRPCRouter({
           bathrooms: input.bathrooms,
           occupants: input.occupants,
           schoolDistance: input.schoolDistance,
-          imageURI: input.imageURI,
+          imageSrc: input.imageURI,
           createdBy: { connect: { id: ctx.session.user.id } },
         },
       });

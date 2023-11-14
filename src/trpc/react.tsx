@@ -21,7 +21,7 @@ export function TRPCReactProvider(props: {
       transformer,
       links: [
         loggerLink({
-          enabled: (op) =>
+          enabled: (op) => 
             process.env.NODE_ENV === "development" ||
             (op.direction === "down" && op.result instanceof Error),
         }),
