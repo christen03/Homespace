@@ -5,6 +5,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import Navbar from "./_components/navbar";
 import { NextAuthProvider } from "./_components/provider";
 import Footer from "./_components/footer";
+import ListingModal from "./_components/modals/create-listing";
 
 const inter = Inter({
   subsets: ["latin"],
