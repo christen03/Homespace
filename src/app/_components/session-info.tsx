@@ -15,14 +15,10 @@ export default function SessionInfo() {
         });
     }, []);
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
     const firstName = session?.user?.name?.split(" ")[0] ?? "";
 
     return (
-        <div className="align-center mt-2 w-full justify-center">
+        <div className="align-center mt-4 w-full justify-center">
             <h1 className="text-center text-2xl font-medium">
                 Welcome to{" "}
                 <span className="font-bold leading-normal text-teal-600">

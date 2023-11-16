@@ -15,7 +15,7 @@ interface ListingCardProps {
   bedrooms: number;
   schoolDistance: string;
   occupants: number;
-  img: StaticImageData;
+  imgSrc: String;
 }
 
 function ListingCard({
@@ -26,7 +26,7 @@ function ListingCard({
   bedrooms,
   schoolDistance,
   occupants,
-  img,
+  imgSrc,
 }: ListingCardProps) {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
 
@@ -46,7 +46,7 @@ function ListingCard({
           >
             <Image
               alt={title}
-              src={img}
+              src={imgSrc}
               layout="fill"
               objectFit="cover"
               objectPosition="center"

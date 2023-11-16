@@ -75,7 +75,15 @@ function Navbar() {
               About Lynkpad
             </Link>
           </div>
-          <div className="flex items-center justify-center gap-1 rounded-[100px] bg-teal-300 px-6 py-3 hover:bg-teal-400">
+          <div className="flex items-center justify-center gap-1 rounded-[100px] bg-red-300 px-6 py-3 hover:bg-red-400">
+            <Link
+              href="/waitlist"
+              className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+            >
+              Join the waitlist!
+            </Link>
+          </div>
+          <div className="mt-2 flex items-center justify-center gap-1 rounded-[100px] bg-teal-300 px-6 py-3 hover:bg-teal-400">
             <Link
               href="/create-listing"
               className="text-center text-base font-semibold leading-snug tracking-tight text-black"
@@ -86,14 +94,14 @@ function Navbar() {
 
           <div className="mt-2 text-center">
             {session && session.user && session.user.image ? (
-              <div className="gap-1 rounded-full border border-gray-500 bg-white p-1">
+              <div className="flex items-center justify-center gap-1 bg-white p-1">
                 <Link href={"/api/auth/signout"}>
                   <Image
                     src={session.user.image}
                     width={38}
                     height={38}
                     alt="Profile Image"
-                    className="rounded-full" // Apply Tailwind's rounded-full class
+                    className="rounded-full rounded-full border border-gray-500 p-1" // Apply Tailwind's rounded-full class
                   />
                 </Link>
               </div>
@@ -126,6 +134,14 @@ function Navbar() {
                 className="text-center text-base font-semibold leading-snug tracking-tight text-black"
               >
                 About Lynkpad
+              </Link>
+            </div>
+            <div className="flex items-center justify-center gap-1 rounded-[100px] bg-red-300 px-6 py-3 hover:bg-red-400">
+              <Link
+                href="/waitlist"
+                className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+              >
+                Join the waitlist!
               </Link>
             </div>
             <div className="flex items-center justify-center gap-1 rounded-[100px] bg-teal-300 px-6 py-3 hover:bg-teal-400">
