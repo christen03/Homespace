@@ -87,7 +87,8 @@ model Listing {
     bathrooms      Int
     occupants      Int
     schoolDistance String
-    // imageSrc String
+    imageSrc       String
+
 
     @@map("listings")
 }
