@@ -15,7 +15,7 @@ interface ListingCardProps {
   bedrooms: number;
   schoolDistance: string;
   occupants: number;
-  imgSrc: String;
+  imgSrc: string;
 }
 
 function ListingCard({
