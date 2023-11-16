@@ -1,4 +1,6 @@
 import ajHeadshot from "../../../public/AkshatJainHeadshot.jpg";
+import christen from "../../../public/christen.JPG";
+import nhathan from "../../../public/nhathan.jpg";
 import def from "../../../public/default.jpg";
 
 const teamMemberData = [
@@ -20,7 +22,7 @@ const teamMemberData = [
   },
   {
     name: "Nhathan Nguyen",
-    headshot: def,
+    headshot: nhathan,
     college: "B.S. Cognitive Science",
     role: "Product Manager",
     linkedin: "https://www.linkedin.com/in/nhathan-nguyen/",
@@ -28,7 +30,7 @@ const teamMemberData = [
   },
   {
     name: "Christen Xie",
-    headshot: def,
+    headshot: christen,
     college: "B.S. Computer Engineering",
     role: "Developer",
     linkedin: "https://www.linkedin.com/in/christen-xie-473ba61a1/",

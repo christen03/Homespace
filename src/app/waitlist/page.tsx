@@ -8,12 +8,12 @@ export default function Waitlist() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { value: any; }; }) => {
     const { value } = e.target;
     setFormData({ email: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     // Simulate submission logic (in real scenario, this would be an API call or backend processing)
     console.log("Email submitted:", formData.email);

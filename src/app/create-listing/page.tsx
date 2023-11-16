@@ -4,6 +4,7 @@ import { useListingStore } from "~/stores/listing"
 import TitleForm from "../_components/ListingForms/TitleForm"
 import InformationForm from "../_components/ListingForms/InformationForm"
 import AddressForm from "../_components/ListingForms/AddressForm"
+import ImageForm from "../_components/ListingForms/ImageForm";
 
 type Inputs = {
     example: string
@@ -21,6 +22,9 @@ function ActiveFormComponent() {
 
         case 3:
             return <AddressForm />
+        
+        case 4:
+            return <ImageForm />
     }
 }
 
