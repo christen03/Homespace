@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import "./Navbar.css";
-import Image, { StaticImageData } from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useState, useEffect } from "react";
 import { FaBath, FaBed} from "react-icons/fa";
 import { FaPerson } from "react-icons/fa6";
@@ -30,9 +30,7 @@ function ListingCard({
 }: ListingCardProps) {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
 
-  useEffect(() => {
-    // Assuming 1:1 aspect ratio for the image
-    const width = document.getElementById(`image-${id}`)?.offsetWidth || 0;
+  useEffect(() => {    const width = document.getElementById(`image-${id}`)?.offsetWidth ?? 0;
     setImageSize({ width, height: width });
   }, [id]);
   return (
