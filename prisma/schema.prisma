@@ -89,5 +89,6 @@ model Listing {
     schoolDistance String
     imageSrc       String
 
+
     @@map("listings")
 }
