@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import "./Navbar.css";
-import Image, { StaticImageData } from "next/image";
+import "./navbar.css";
+import Image, { type StaticImageData } from "next/image";
 import { useState, useEffect } from "react";
 import { FaBath, FaBed } from "react-icons/fa";
 import { FaPerson } from "react-icons/fa6";

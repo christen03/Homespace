@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import "./Navbar.css";
+import "./navbar.css";
 import { useSession } from "next-auth/react";
 import def from "../../../public/default.jpg";
 import { FaM, FaMarsAndVenus } from "react-icons/fa6";

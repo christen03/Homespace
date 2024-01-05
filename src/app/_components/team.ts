@@ -2,7 +2,7 @@ import ajHeadshot from "../../../public/AkshatJainHeadshot.jpg";
 import christen from "../../../public/christen.jpg";
 import nhathan from "../../../public/nhathan.jpg";
 import def from "../../../public/default.jpg";
-import { StaticImageData } from "next/image";
+import { type StaticImageData } from "next/image";
 
 
 
@@ -30,7 +30,7 @@ const teamMemberData: TeamMember[] = [
     college: "B.S. Computer Engineering",
     role: "Developer",
     linkedin: "https://www.linkedin.com/in/christen-xie-473ba61a1/",
-    curPosition: "Software Engineer at Candid",
+    curPosition: "Software Engineer at Roll",
   },
   {
     name: "Akshat Jain",
