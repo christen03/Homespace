@@ -1,5 +1,5 @@
 {
-  "name": "villaq",
+  "name": "homespace",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -32,6 +32,7 @@
     "react-hook-form": "^7.48.2",
     "react-icons": "^4.11.0",
     "react-spring": "^9.7.3",
+    "styled-components": "^6.1.6",
     "superjson": "^1.13.1",
     "use-places-autocomplete": "^4.0.1",
     "zod": "^3.22.4",

@@ -8,7 +8,7 @@ import def from "../../../public/default.jpg";
 import { FaM, FaMarsAndVenus } from "react-icons/fa6";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function Navbar() {
   // Assuming getServerAuthSession returns an object with user information
@@ -26,12 +26,12 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="mx-10 mt-2">
+      <div className="">
         <div className="flex w-full items-center justify-between gap-6 rounded-[66px] border border-gray-500 bg-white bg-opacity-70 py-4 pl-8 pr-6 sm:hidden">
           <div>
             <Link href="/" className="flex items-center justify-center">
-              <div className="text-3xl font-bold leading-normal text-teal-600">
-                Lynkpad
+              <div className="text-accent text-3xl font-bold leading-normal">
+                Homespace
               </div>
             </Link>
           </div>
@@ -70,23 +70,23 @@ function Navbar() {
           <div className="flex items-center justify-center gap-1 px-4 py-3">
             <Link
               href="/about"
-              className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+              className="text-center text-base font-semibold leading-snug tracking-tight text-white"
             >
-              About Lynkpad
+              About
             </Link>
           </div>
-          <div className="flex items-center justify-center gap-1 rounded-[100px] bg-red-300 px-6 py-3 hover:bg-red-400">
+          <div className="bg-secondary hover:bg-secondaryDark flex items-center justify-center gap-1 rounded-[100px] px-6 py-3">
             <Link
               href="/waitlist"
-              className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+              className="text-center text-base font-semibold leading-snug tracking-tight text-white"
             >
               Join the waitlist!
             </Link>
           </div>
-          <div className="mt-2 flex items-center justify-center gap-1 rounded-[100px] bg-teal-300 px-6 py-3 hover:bg-teal-400">
+          <div className="bg-secondary hover:bg-secondaryDark mt-2 flex items-center justify-center gap-1 rounded-[100px] px-6 py-3">
             <Link
               href="/create-listing"
-              className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+              className="text-center text-base font-semibold leading-snug tracking-tight text-white"
             >
               Lynk Your Apartment
             </Link>
@@ -106,7 +106,7 @@ function Navbar() {
                 </Link>
               </div>
             ) : (
-              <div className="flex items-center justify-center rounded-[100px] bg-teal-300 px-6 py-3 hover:bg-teal-400">
+              <div className="bg-secondary hover:bg-secondaryDark flex items-center justify-center rounded-[100px] px-6 py-3">
                 <Link
                   href={"/api/auth/signin"}
                   className="text-center text-base font-semibold leading-snug tracking-tight text-black"
@@ -118,12 +118,12 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="inline-flex hidden w-full items-center justify-center gap-[33px] rounded-[66px] border border-gray-500 bg-white bg-opacity-70 py-4 pl-8 pr-6 sm:flex">
+        <div className="bg-colorbng inline-flex hidden w-full items-center justify-center gap-[33px] py-4 px-12 sm:flex">
           <div className="flex items-center justify-center gap-12">
             <Link href="/" className="flex items-center justify-center">
-              <div className="relative h-[35px] w-[40px]"></div>
-              <div className="text-3xl font-bold leading-normal text-teal-600">
-                Lynkpad
+              {/* <div className="relative h-[35px] w-[40px]"></div> */}
+              <div className="text-accent text-3xl font-bold leading-normal">
+                Homespace
               </div>
             </Link>
           </div>
@@ -131,32 +131,24 @@ function Navbar() {
             <div className="flex items-center justify-center gap-1 px-4 py-3">
               <Link
                 href="/about"
-                className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+                className="text-center text-base font-semibold leading-snug tracking-tight text-white"
               >
-                About Lynkpad
+                About
               </Link>
             </div>
-            <div className="flex items-center justify-center gap-1 rounded-[100px] bg-red-300 px-6 py-3 hover:bg-red-400">
-              <Link
-                href="/waitlist"
-                className="text-center text-base font-semibold leading-snug tracking-tight text-black"
-              >
-                Join the waitlist!
-              </Link>
-            </div>
-            <div className="flex items-center justify-center gap-1 rounded-[100px] bg-teal-300 px-6 py-3 hover:bg-teal-400">
+            <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 px-6 py-3">
               <Link
                 href="/create-listing"
-                className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+                className="text-center text-base font-semibold leading-snug tracking-tight text-white"
               >
-                Lynk Your Apartment
+                Add Your Apartment
               </Link>
             </div>
             <div className="flex items-center justify-center">
               <div>
                 <div className="text-center">
                   {session && session.user && session.user.image ? (
-                    <div className="gap-1 rounded-full border border-gray-500 bg-white p-1">
+                    <div className="bg-secondary gap-1 rounded-full border border-gray-500 p-[2px]">
                       <Link href={"/api/auth/signout"}>
                         <Image
                           src={session.user.image}
@@ -168,7 +160,7 @@ function Navbar() {
                       </Link>
                     </div>
                   ) : (
-                    <div className="flex items-center justify-center rounded-[100px] bg-teal-300 px-6 py-3 hover:bg-teal-400">
+                    <div className="bg-secondary hover:bg-secondaryDark flex items-center justify-center rounded-[100px] px-6 py-3">
                       <Link
                         href={"/api/auth/signin"}
                         className="text-center text-base font-semibold leading-snug tracking-tight text-black"
