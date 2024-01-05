@@ -35,7 +35,7 @@ export default function ListingsInfo() {
               schoolDistance={listing.schoolDistance}
               occupants={listing.occupants}
               imgSrc={listing.imageSrc}
-              createdBy={listing.createdBy}
+              createdBy={listing.createdById}
             ></ListingCard>
           ))}
         </div>
