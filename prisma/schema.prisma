@@ -58,12 +58,12 @@ model Session {
 
 model User {
     id            String    @id @default(auto()) @map("_id") @db.ObjectId
-    name          String?
-    email         String?   @unique
+    name          String
+    email         String   @unique
     emailVerified DateTime? @map("email_verified")
-    phoneNumber  String?
-    biography     String?
-    location      String?
+    phoneNumber   String
+    biography     String
+    location      String
     image         String?
     accounts      Account[]
     sessions      Session[]

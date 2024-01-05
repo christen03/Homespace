@@ -63,22 +63,22 @@ const locationRef = useRef<HTMLInputElement | null>(null);
         {isEditMode ? (
           <div className="mt-4">
             <label>Name:</label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ref={nameRef} type="text" defaultValue={userData.name ?? ""}  />
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ref={nameRef} type="text" defaultValue={userData.name}  />
             <label>Phone:</label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
               ref={phoneRef}
               type="text"
-              defaultValue={userData.phoneNumber ?? ""} 
+              defaultValue={userData.phoneNumber} 
             />
             <label>Biography:</label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" ref={bioRef} type="text" defaultValue={userData.biography ?? ""}  />
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" ref={bioRef} type="text" defaultValue={userData.biography}  />
             <label>Location:</label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
               ref={locationRef}
               type="text"
-              defaultValue={userData.location ?? ""} 
+              defaultValue={userData.location} 
             />
           </div>
         ) : (
