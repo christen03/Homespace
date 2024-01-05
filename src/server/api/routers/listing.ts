@@ -20,7 +20,7 @@ export const listingRouter = createTRPCRouter({
         occupants: z.number().min(1),
         schoolDistance: z.string().min(1),
         imageSrc: z.string().min(1),
-        createdBy: z.string().min(1).default("undefined"),
+        // createdBy: z.string().min(1).default("undefined"),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -35,7 +35,7 @@ export const listingRouter = createTRPCRouter({
           occupants: input.occupants,
           schoolDistance: input.schoolDistance,
           imageSrc: input.imageSrc,
-          createdBy: ctx.session.user.id,
+          createdById: ctx.session.user.id,
         },
       });
     }),
