@@ -82,9 +82,9 @@ export default function About() {
               of security and belonging within the academic community.
             </div>
           </div>
-          <div className="mt-4 flex w-full flex-col flex-wrap items-center justify-center pl-10 sm:mt-0 sm:w-2/5">
+          <div className="mt-10 flex w-full flex-col flex-wrap items-center justify-center sm:pl-10 sm:mt-0 sm:w-2/5">
             {/* Inserted images */}
-            <div className="w-[30rem] rounded-2xl border-accent">
+            <div className="w-84 rounded-2xl border-accent">
               <Image
                 src={geisel}
                 alt="Geisel Library"
