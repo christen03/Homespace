@@ -21,7 +21,7 @@ export default function Launch() {
               <span className="text-accent font-medium leading-normal">
                 Homespace
               </span>
-              : a space like home
+              :<div className="sm:hidden"></div> a space like home
             </h1>
           </div>
         </div>
@@ -54,31 +54,31 @@ export default function Launch() {
           </div>
         </div>
       </div>
-      <div className="mt-20 px-20">
-        <div className="mx-10 mt-8 flex flex-row rounded-3xl bg-gray-100 px-16 py-12">
-          <div className="w-3/5">
-            <h1 className="text-colorbng text-3xl font-medium sm:text-4xl">
+      <div className="mt-20 sm:px-20">
+        <div className="mx-10 mt-8 flex flex-col rounded-3xl bg-gray-100 px-6 py-6 sm:flex-row sm:px-16 sm:py-12">
+          <div className="sm:w-3/5">
+            <h1 className="text-colorbng text-xl font-medium sm:text-4xl">
               List & Find with{" "}
               <span className="text-colorbng font-bold leading-normal">
                 Homespace
               </span>
             </h1>
             <div className="min mt-4 flex flex-col">
-              <div className="w-full text-2xl text-gray-600">
+              <div className="w-full text-gray-600">
                 <div>
-                  <p className="mt-4">
+                  <p className="mt-4 text-lg sm:text-2xl">
                     We are a platform that helps students list their apartments
                     and find subleases <b>ahead of time.</b>
                   </p>
-                  <p className="mt-4">
-                    Our goal is to provide students with an ideal living space -
+                  <p className="mt-4 text-lg sm:text-2xl">
+                    Our goal is to provide students with an ideal living space:
                     a home away from home.
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex w-2/5 items-center justify-center">
+          <div className="mt-4 flex items-center justify-center sm:mt-0 sm:w-2/5">
             <svg
               viewBox="0 0 24 24"
               fill="none"

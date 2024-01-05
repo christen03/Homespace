@@ -5,14 +5,14 @@ import Image from "next/image";
 import geisel from "../../../public/geisel.jpeg";
 import collab from "../../../public/collaboration.jpg";
 import TeamMember from "../_components/team-member";
-import teamMemberData  from "../_components/team";
+import teamMemberData from "../_components/team";
 
 export default async function About() {
   return (
     <div>
       <div className="relative h-[10rem] sm:h-[20rem]">
         {/* Dark overlay */}
-        <div className="absolute inset-0 z-10 bg-black opacity-60"></div>
+        <div className="absolute inset-0 z-10 bg-black opacity-75"></div>
 
         {/* Image */}
         <div className="relative z-0 h-full">
@@ -30,7 +30,7 @@ export default async function About() {
         <div className="absolute left-1/2 top-1/2 z-20 w-full -translate-x-1/2 -translate-y-1/2 transform text-center text-white">
           <h1 className="text-3xl font-medium sm:text-5xl">
             About{" "}
-            <span className="font-bold leading-normal text-teal-400">
+            <span className="text-accent font-bold leading-normal">
               Homespace
             </span>{" "}
             and Team
@@ -40,15 +40,15 @@ export default async function About() {
       <div className="mx-10 mt-8 flex flex-col">
         <h1 className="text-3xl font-medium text-gray-600 sm:text-4xl">
           The Story Behind{" "}
-          <span className="font-bold leading-normal text-teal-400">
+          <span className="text-accent font-bold leading-normal">
             Homespace
           </span>{" "}
         </h1>
         <div className="mt-4 flex flex-col sm:flex-row">
           <div className="w-full sm:w-3/5">
             <div>
-              At Homespace, our story is rooted in a shared experience—facing the
-              housing challenges that many college students encounter. We
+              At Homespace, our story is rooted in a shared experience—facing
+              the housing challenges that many college students encounter. We
               observed the struggles faced by students seeking housing solutions
               at UC San Diego, recognizing a pervasive lack of dedicated
               resources in this realm. Driven by our collective passion to
@@ -81,22 +81,12 @@ export default async function About() {
               of security and belonging within the academic community.
             </div>
           </div>
-          <div className="flex w-full sm:w-2/5 flex-col flex-wrap items-center justify-center mt-4 sm:mt-0">
+          <div className="mt-4 flex w-full flex-col flex-wrap items-center justify-center sm:mt-0 sm:w-2/5 pl-10">
             {/* Inserted images */}
-            <div className="mb-4 mr-20 w-64 rounded-2xl border-4 border-teal-600">
+            <div className="w-[30rem] rounded-2xl border-accent">
               <Image
                 src={geisel}
                 alt="Geisel Library"
-                className="rounded-lg"
-                layout="responsive"
-                width={500}
-                height={350}
-              />
-            </div>
-            <div className="mb-4 ml-20 w-64 rounded-2xl border-4 border-teal-600">
-              <Image
-                src={collab}
-                alt="Collaboration"
                 className="rounded-lg"
                 layout="responsive"
                 width={500}
@@ -108,13 +98,13 @@ export default async function About() {
       </div>
       <div className="mt-8 flex flex-col bg-gray-100">
         <div className="mx-10 mt-12 items-center justify-center text-center">
-          <h1 className="text-3xl font-medium text-gray-600 sm:text-4xl">
+          <h1 className="text-3xl font-medium text-colorbng sm:text-4xl">
             Meet the Team
           </h1>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-16 mb-10">
-          {teamMemberData.map((member : any, index : any) => (
+        <div className="mb-10 mt-8 grid grid-cols-1 gap-8 px-16 sm:grid-cols-2 md:grid-cols-3">
+          {teamMemberData.map((member: any, index: any) => (
             <TeamMember
               key={index} // Ensure to provide a unique key for each component in the array
               name={member.name}
