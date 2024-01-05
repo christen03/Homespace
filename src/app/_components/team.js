@@ -1,5 +1,5 @@
 import ajHeadshot from "../../../public/AkshatJainHeadshot.jpg";
-import christen from "../../../public/christen.JPG";
+import christen from "../../../public/christen.jpg";
 import nhathan from "../../../public/nhathan.jpg";
 import def from "../../../public/default.jpg";
 

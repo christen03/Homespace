@@ -2,6 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 
 import { useListingStore } from "~/stores/listing";
 import Counter from "../Counter";
+import { string } from "zod";
 
 type InfoFormValues = {
     bedrooms: number;
@@ -23,11 +24,30 @@ export default function InformationForm() {
     });
 
     const onHandleFormSubmit = (data: InfoFormValues) => {
-        listingStore.setBathrooms(data.bathrooms)
-        listingStore.setBedrooms(data.bedrooms)
-        listingStore.setOccupants(data.occupants)
-        listingStore.setPrice(parseInt(data.price))
+      listingStore.setBathrooms(data.bathrooms);
+      listingStore.setBedrooms(data.bedrooms);
+      listingStore.setOccupants(data.occupants);
+
+      let priceAsNumber: number | undefined = undefined;
+
+      // Check if data.price is a string and convert it to a number
+      if (typeof data.price === "string") {
+        priceAsNumber = parseInt(data.price, 10);
+      } else {
+        // If it's not a string, it might already be a number
+        priceAsNumber = data.price;
+      }
+
+      // Check if price is a valid number
+      if (!isNaN(priceAsNumber!)) {
+        listingStore.setPrice(priceAsNumber!);
         listingStore.onHandleNext();
+      } else {
+        // Handle case where price is not a valid number
+        console.error("Price is not a valid number");
+        // You might want to display an error message to the user
+        // or handle the situation based on your application's logic.
+      }
     };
 
     return (
