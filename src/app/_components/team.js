@@ -5,22 +5,6 @@ import def from "../../../public/default.jpg";
 
 const teamMemberData = [
   {
-    name: "Jovani Ghorbani",
-    headshot: def,
-    college: ".",
-    role: "Business Development",
-    linkedin: "https://www.linkedin.com/in/jovani-ghorbani-5a99261b0/",
-    curPosition: "Marketing at Everhome Real Estate",
-  },
-  {
-    name: "Khushal Bhanderi",
-    headshot: def,
-    college: "B.A. Business Economics",
-    role: "Business Development",
-    linkedin: "https://www.linkedin.com/in/bhanderik/",
-    curPosition: ".",
-  },
-  {
     name: "Nhathan Nguyen",
     headshot: nhathan,
     college: "B.S. Cognitive Science",
