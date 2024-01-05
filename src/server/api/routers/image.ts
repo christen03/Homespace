@@ -4,7 +4,7 @@ import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { s3 } from "../../db"; // Import your S3Client instance
 import { useListingStore } from "~/stores/listing";
 
-const listingR = useListingStore();
+// const listingR = useListingStore();
 
 export const imageRouter = createTRPCRouter({
   uploadImage: protectedProcedure
@@ -36,7 +36,7 @@ export const imageRouter = createTRPCRouter({
 
         console.log(publicUrl);
 
-        listingR.setImageSrc(publicUrl);
+       // listingR.setImageSrc(publicUrl);
 
         return publicUrl; // Return the public URL as a response
       } catch (error) {
