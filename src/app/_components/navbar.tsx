@@ -27,10 +27,10 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="">
-        <div className="flex w-full items-center justify-between gap-6 rounded-[66px] border border-gray-500 bg-white bg-opacity-70 py-4 pl-8 pr-6 sm:hidden">
+        <div className="bg-colorbng flex w-full items-center justify-between gap-6 py-4 pl-8 pr-6 sm:hidden">
           <div>
             <Link href="/" className="flex items-center justify-center">
-              <div className="text-accent text-3xl font-bold leading-normal">
+              <div className="text-accent pt-2 text-3xl font-bold leading-normal">
                 Homespace
               </div>
             </Link>
@@ -41,7 +41,7 @@ function Navbar() {
             <button
               onClick={toggleMenu}
               type="button"
-              className="focus:outline-none"
+              className="text-white focus:outline-none"
               aria-label="Hamburger Menu"
             >
               <svg
@@ -63,7 +63,7 @@ function Navbar() {
         <div
           className={
             showMenu
-              ? "m-0 mt-2 block items-center justify-center p-5 shadow-lg transition duration-300 sm:ml-4 sm:mt-3 sm:flex sm:p-0 sm:shadow-none"
+              ? "bg-colorbng m-0 block items-center justify-center p-5 shadow-xl transition duration-300 sm:ml-4 sm:mt-3 sm:flex sm:p-0 sm:shadow-none"
               : "hidden"
           }
         >
@@ -75,33 +75,27 @@ function Navbar() {
               About
             </Link>
           </div>
-          <div className="bg-secondary hover:bg-secondaryDark flex items-center justify-center gap-1 rounded-[100px] px-6 py-3">
-            <Link
-              href="/waitlist"
-              className="text-center text-base font-semibold leading-snug tracking-tight text-white"
-            >
-              Join the waitlist!
-            </Link>
-          </div>
-          <div className="bg-secondary hover:bg-secondaryDark mt-2 flex items-center justify-center gap-1 rounded-[100px] px-6 py-3">
-            <Link
-              href="/create-listing"
-              className="text-center text-base font-semibold leading-snug tracking-tight text-white"
-            >
-              Lynk Your Apartment
-            </Link>
-          </div>
+          {/* <div className="px-16">
+            <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 py-3">
+              <Link
+                href="/create-listing"
+                className="text-center text-base font-semibold leading-snug tracking-tight text-white"
+              >
+                Add Your Apartment
+              </Link>
+            </div>
+          </div> */}
 
-          <div className="mt-2 text-center">
+          {/* <div className="mt-2 text-center">
             {session && session.user && session.user.image ? (
-              <div className="flex items-center justify-center gap-1 bg-white p-1">
+              <div className="flex items-center justify-center gap-1 p-1">
                 <Link href={"/api/auth/signout"}>
                   <Image
                     src={session.user.image}
                     width={38}
                     height={38}
                     alt="Profile Image"
-                    className="rounded-full rounded-full border border-gray-500 p-1" // Apply Tailwind's rounded-full class
+                    className="rounded-full rounded-full border border-gray-200 p-1" // Apply Tailwind's rounded-full class
                   />
                 </Link>
               </div>
@@ -115,10 +109,10 @@ function Navbar() {
                 </Link>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
 
-        <div className="bg-colorbng inline-flex hidden w-full items-center justify-center gap-[33px] py-4 px-12 sm:flex">
+        <div className="bg-colorbng inline-flex hidden w-full items-center justify-center gap-[33px] px-12 py-4 sm:flex">
           <div className="flex items-center justify-center gap-12">
             <Link href="/" className="flex items-center justify-center">
               {/* <div className="relative h-[35px] w-[40px]"></div> */}
@@ -136,15 +130,15 @@ function Navbar() {
                 About
               </Link>
             </div>
-            <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 px-6 py-3">
+            {/* <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 px-6 py-3">
               <Link
                 href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
               >
                 Add Your Apartment
               </Link>
-            </div>
-            <div className="flex items-center justify-center">
+            </div> */}
+            {/* <div className="flex items-center justify-center">
               <div>
                 <div className="text-center">
                   {session && session.user && session.user.image ? (
@@ -171,7 +165,7 @@ function Navbar() {
                   )}
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
