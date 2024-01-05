@@ -9,10 +9,10 @@ export default function Page() {
   const userData = getUserData.data;
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const nameRef = useRef();
-  const phoneRef = useRef();
-  const bioRef = useRef();
-  const locationRef = useRef();
+  const nameRef = useRef<HTMLInputElement | null>(null);
+const phoneRef = useRef<HTMLInputElement | null>(null);
+const bioRef = useRef<HTMLInputElement | null>(null);
+const locationRef = useRef<HTMLInputElement | null>(null);
 
   const updateUserData = api.users.updateCurrentUser.useMutation({
     onSuccess: async () => {
@@ -22,10 +22,17 @@ export default function Page() {
   });
 
   const handleSaveNewData = () => {
-    const newName = nameRef.current.value;
-    const newPhone = phoneRef.current.value;
-    const newBio = bioRef.current.value;
-    const newLocation = locationRef.current.value;
+    const newName = nameRef.current?.value;
+    const newPhone = phoneRef.current?.value;
+    const newBio = bioRef.current?.value;
+    const newLocation = locationRef.current?.value;
+  
+    // Check if any field is empty
+    if (!newName || !newPhone || !newBio || !newLocation) {
+      alert("All fields must be filled out");
+      return;
+    }
+  
     updateUserData.mutate({
       name: newName,
       phoneNumber: newPhone,
@@ -34,7 +41,7 @@ export default function Page() {
     });
     console.log("data updated!")
   };
-
+  
   if (userData === undefined || userData === null) {
     return <div>Loading...</div>;
   }
@@ -56,22 +63,22 @@ export default function Page() {
         {isEditMode ? (
           <div className="mt-4">
             <label>Name:</label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ref={nameRef} type="text" defaultValue={userData.name} />
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ref={nameRef} type="text" defaultValue={userData.name ?? ""}  />
             <label>Phone:</label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
               ref={phoneRef}
               type="text"
-              defaultValue={userData.phoneNumber}
+              defaultValue={userData.phoneNumber ?? ""} 
             />
             <label>Biography:</label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" ref={bioRef} type="text" defaultValue={userData.biography} />
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" ref={bioRef} type="text" defaultValue={userData.biography ?? ""}  />
             <label>Location:</label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
               ref={locationRef}
               type="text"
-              defaultValue={userData.location}
+              defaultValue={userData.location ?? ""} 
             />
           </div>
         ) : (
