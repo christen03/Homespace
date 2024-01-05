@@ -16,6 +16,7 @@ interface ListingCardProps {
   schoolDistance: string;
   occupants: number;
   imgSrc: string;
+  createdBy: string
 }
 
 function ListingCard({
@@ -27,6 +28,7 @@ function ListingCard({
   schoolDistance,
   occupants,
   imgSrc,
+  createdBy
 }: ListingCardProps) {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
 
@@ -56,6 +58,9 @@ function ListingCard({
               ${price} per month | {schoolDistance} from campus
             </p>
             <div className="align-center flex flex-row justify-center gap-3 mt-2">
+            <div className="font-regular ml-4 mt-1 flex text-center text-md text-gray-500">
+              Created by: {createdBy}
+            </div>
               <div className="font-regular ml-4 mt-1 flex text-center text-md text-gray-500">
                 {bedrooms} <FaBed className="mt-1 ml-1" />
               </div>

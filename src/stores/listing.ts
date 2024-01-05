@@ -15,6 +15,7 @@ interface ListingState {
   setBathrooms: (bathrooms: number) => void;
   setBedrooms: (bedrooms: number) => void;
   setOccupants: (occupants: number) => void;
+  setSchoolDistance: (schoolDistance: string) => void;
   setPrice: (price: number) => void;
   setImage: (image: string) => void;
   setImageSrc: (imageSrc: string) => void;
@@ -37,6 +38,7 @@ export const useListingStore = create<ListingState>((set) => ({
   setBathrooms: (bathrooms: number) => set({ bathrooms }),
   setBedrooms: (bedrooms: number) => set({ bedrooms }),
   setOccupants: (occupants: number) => set({ occupants }),
+  setSchoolDistance: (schoolDistance: string) => set({ schoolDistance }),
   setPrice: (price: number) => set({ price }),
   setImage: (image: string) => set({ image }),
   setImageSrc: (imageSrc: string) => set({ imageSrc }),

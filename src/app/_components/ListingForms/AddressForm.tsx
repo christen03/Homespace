@@ -122,9 +122,10 @@ export default function AddressForm() {
     defaultValues: { title: listingStore.title },
   });
 
-  const onHandleFormSubmit = (data: TFormValues) => {
-    listingStore.setTitle(data.title);
+  const onHandleFormSubmit = () => {
+    listingStore.setSchoolDistance("temp distance")
     listingStore.onHandleNext();
+
   };
 
   if (!isLoaded) {
@@ -135,7 +136,7 @@ export default function AddressForm() {
     <>
       <Map />
       <div className="flex justify-end">
-        <button onClick={listingStore.onHandleNext} className="inline-block h-11 rounded-md bg-blue-600 px-6 font-semibold text-white">
+        <button onClick={onHandleFormSubmit} className="inline-block h-11 rounded-md bg-blue-600 px-6 font-semibold text-white">
           Next
         </button>
       </div>

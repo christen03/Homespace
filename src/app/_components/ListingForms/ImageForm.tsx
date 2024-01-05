@@ -12,21 +12,37 @@ export default function ImageForm() {
   const router = useRouter();
   const listingStore = useListingStore();
   const [image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState("")
 
   const { register, handleSubmit } = useForm<TFormValues>({
     defaultValues: { image: listingStore.image },
   });
 
+
   const onHandleFormSubmit = (data: TFormValues) => {
-    setImage(data.image);
-    listingStore.setImage(data.image);
-    listingStore.onHandleNext();
-  };
+    listingStore.setImageSrc(imageUrl)
+    listingStore.onHandleNext()
+    createListing.mutate({
+      title: listingStore.title,
+      price: listingStore.price,
+      bedrooms: listingStore.bedrooms,
+      bathrooms: listingStore.bathrooms,
+      occupants: listingStore.occupants,
+      schoolDistance: listingStore.schoolDistance,
+      imageSrc: imageUrl
+    });
+  }
 
   const uploadImg = api.image.uploadImage.useMutation({
+    onSuccess: (data) => {
+      setImageUrl(data)
+      router.refresh();
+    },
+  });
+
+  const createListing = api.listing.createOne.useMutation({
     onSuccess: () => {
       router.refresh();
-      setImage("");
     },
   });
 
@@ -106,7 +122,7 @@ export default function ImageForm() {
           )}
 
           <h3 className="mb-2 text-xl font-semibold">
-            AWS Image url: {listingStore.imageSrc}
+            AWS Image url: {imageUrl}
           </h3>
         </div>
       </form>

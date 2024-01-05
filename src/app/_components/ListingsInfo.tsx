@@ -5,6 +5,8 @@ import ListingCard from "./listing-card";
 import sample from "../../../public/sample-apartment.png";
 import sample2 from "../../../public/sample-apartment-2.jpeg";
 
+
+
 export default function ListingsInfo() {
   const getListings = api.listing.getMany.useQuery();
   const listings = getListings.data;
@@ -33,6 +35,7 @@ export default function ListingsInfo() {
               schoolDistance={listing.schoolDistance}
               occupants={listing.occupants}
               imgSrc={listing.imageSrc}
+              createdBy={listing.createdBy}
             ></ListingCard>
           ))}
         </div>
