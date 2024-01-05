@@ -2,8 +2,20 @@ import ajHeadshot from "../../../public/AkshatJainHeadshot.jpg";
 import christen from "../../../public/christen.jpg";
 import nhathan from "../../../public/nhathan.jpg";
 import def from "../../../public/default.jpg";
+import { StaticImageData } from "next/image";
 
-const teamMemberData = [
+
+
+export interface TeamMember {
+  name: string;
+  headshot: StaticImageData;
+  college: string;
+  role: string;
+  linkedin: string;
+  curPosition: string;
+}
+
+const teamMemberData: TeamMember[] = [
   {
     name: "Nhathan Nguyen",
     headshot: nhathan,
@@ -31,3 +43,4 @@ const teamMemberData = [
 ];
 
 export default teamMemberData;
+

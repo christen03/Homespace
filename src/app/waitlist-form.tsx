@@ -39,24 +39,24 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit }) => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Your Email"
-            className="border-secondary flex-grow rounded-md border-2 bg-transparent px-3 py-2 text-white focus:outline-none" // Add the text-white class here
+            className="flex-grow rounded-md border-2 border-secondary bg-transparent px-3 py-2 text-white focus:outline-none" // Add the text-white class here
             required
           />
 
           <button
             type="submit"
-            className="bg-secondary hover:bg-secondaryDark ml-2 rounded-md px-4 py-2 text-white font-regular transition duration-300"
+            className="font-regular ml-2 rounded-md bg-secondary px-4 py-2 text-white transition duration-300 hover:bg-secondaryDark"
           >
             Join
           </button>
         </form>
       ) : (
         <div className="text-center">
-          <p className="mb-4 text-gray-200 text-xl">
+          <p className="mb-4 text-xl text-gray-200">
             Your email <strong>{formData.email}</strong> has been submitted
             successfully.
           </p>
-          <p className="text-xl text-gray-200">We'll keep you updated.</p>
+          <p className="text-xl text-gray-200">We&apos;ll keep you updated.</p>
         </div>
       )}
     </div>

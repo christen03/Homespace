@@ -10,9 +10,9 @@ export default function Page() {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const nameRef = useRef<HTMLInputElement | null>(null);
-const phoneRef = useRef<HTMLInputElement | null>(null);
-const bioRef = useRef<HTMLInputElement | null>(null);
-const locationRef = useRef<HTMLInputElement | null>(null);
+  const phoneRef = useRef<HTMLInputElement | null>(null);
+  const bioRef = useRef<HTMLInputElement | null>(null);
+  const locationRef = useRef<HTMLInputElement | null>(null);
 
   const updateUserData = api.users.updateCurrentUser.useMutation({
     onSuccess: async () => {
@@ -26,31 +26,31 @@ const locationRef = useRef<HTMLInputElement | null>(null);
     const newPhone = phoneRef.current?.value;
     const newBio = bioRef.current?.value;
     const newLocation = locationRef.current?.value;
-  
+
     // Check if any field is empty
     if (!newName || !newPhone || !newBio || !newLocation) {
       alert("All fields must be filled out");
       return;
     }
-  
+
     updateUserData.mutate({
       name: newName,
       phoneNumber: newPhone,
       biography: newBio,
       location: newLocation,
     });
-    console.log("data updated!")
+    console.log("data updated!");
   };
-  
+
   if (userData === undefined || userData === null) {
     return <div>Loading...</div>;
   }
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen py-2">
+    <main className="flex min-h-screen flex-col items-center justify-center py-2">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome, {userData.name}</h1>
+        <h1 className="mb-4 text-4xl font-bold">Welcome, {userData.name}</h1>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
           onClick={() => {
             setIsEditMode(!isEditMode);
             if (isEditMode) {
@@ -63,22 +63,32 @@ const locationRef = useRef<HTMLInputElement | null>(null);
         {isEditMode ? (
           <div className="mt-4">
             <label>Name:</label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ref={nameRef} type="text" defaultValue={userData.name}  />
+            <input
+              className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+              ref={nameRef}
+              type="text"
+              defaultValue={userData.name}
+            />
             <label>Phone:</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
+              className="focus:shadow-outline mt-2 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
               ref={phoneRef}
               type="text"
-              defaultValue={userData.phoneNumber} 
+              defaultValue={userData.phoneNumber}
             />
             <label>Biography:</label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" ref={bioRef} type="text" defaultValue={userData.biography}  />
+            <input
+              className="focus:shadow-outline mt-2 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+              ref={bioRef}
+              type="text"
+              defaultValue={userData.biography}
+            />
             <label>Location:</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
+              className="focus:shadow-outline mt-2 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
               ref={locationRef}
               type="text"
-              defaultValue={userData.location} 
+              defaultValue={userData.location}
             />
           </div>
         ) : (

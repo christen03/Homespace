@@ -39,15 +39,10 @@ export default function InformationForm() {
       }
 
       // Check if price is a valid number
-      if (!isNaN(priceAsNumber!)) {
+     
         listingStore.setPrice(priceAsNumber!);
         listingStore.onHandleNext();
-      } else {
-        // Handle case where price is not a valid number
-        console.error("Price is not a valid number");
-        // You might want to display an error message to the user
-        // or handle the situation based on your application's logic.
-      }
+      
     };
 
     return (

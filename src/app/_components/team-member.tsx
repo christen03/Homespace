@@ -16,7 +16,7 @@ interface TeamMemberProps {
   linkedin: string;
 }
 
-function TeamMember({
+function TeamMemberCard({
   name,
   headshot,
   role,
@@ -51,4 +51,4 @@ function TeamMember({
   );
 }
 
-export default TeamMember;
+export default TeamMemberCard;

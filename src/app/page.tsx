@@ -18,7 +18,7 @@ export default function Launch() {
         <div className="pt-20">
           <div className="text-center text-white">
             <h1 className="text-3xl font-medium sm:text-5xl">
-              <span className="text-accent font-medium leading-normal">
+              <span className="font-medium leading-normal text-accent">
                 Homespace
               </span>
               :<div className="sm:hidden"></div> a space like home
@@ -26,9 +26,9 @@ export default function Launch() {
           </div>
         </div>
       </div>
-      <div className="bg-colorbng flex items-center justify-center">
+      <div className="flex items-center justify-center bg-colorbng">
         {" "}
-        <div className="animate-fade-in-down bg-colorbng w-full rounded-lg p-8">
+        <div className="animate-fade-in-down w-full rounded-lg bg-colorbng p-8">
           <div className="text-center">
             <h2 className="font-regular mb-4 text-3xl text-white">
               We make subletting easier for students.{" "}
@@ -37,13 +37,13 @@ export default function Launch() {
         </div>
       </div>
 
-      <div className="bg-colorbng flex items-center justify-center">
-        <div className="animate-fade-in-down bg-colorbng w-full max-w-lg rounded-lg p-8">
+      <div className="flex items-center justify-center bg-colorbng">
+        <div className="animate-fade-in-down w-full max-w-lg rounded-lg bg-colorbng p-8">
           <div className="flex flex-col items-center justify-center">
             <Sparkles>
               <div className="text-center">
-                <h2 className="text-accent mb-4 mt-8 text-3xl font-bold">
-                  We're cooking
+                <h2 className="mb-4 mt-8 text-3xl font-bold text-accent">
+                  We&apos;re cooking
                 </h2>
                 <p className="font-regular mb-4 ml-8 mr-8 text-xl text-gray-200">
                   Join our wait list to stay updated!
@@ -57,9 +57,9 @@ export default function Launch() {
       <div className="mt-20 sm:px-20">
         <div className="mx-10 mt-8 flex flex-col rounded-3xl bg-gray-100 px-6 py-6 sm:flex-row sm:px-16 sm:py-12">
           <div className="sm:w-3/5">
-            <h1 className="text-colorbng text-xl font-medium sm:text-4xl">
+            <h1 className="text-xl font-medium text-colorbng sm:text-4xl">
               List & Find with{" "}
-              <span className="text-colorbng font-bold leading-normal">
+              <span className="font-bold leading-normal text-colorbng">
                 Homespace
               </span>
             </h1>
@@ -109,7 +109,7 @@ export default function Launch() {
         </div>
       </div>
 
-      <div className="bg-colorbng h-[30rem]"></div>
+      <div className="h-[30rem] bg-colorbng"></div>
     </div>
   );
 }

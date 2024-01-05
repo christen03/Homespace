@@ -49,7 +49,7 @@ const useRandomInterval = (
 
     if (isEnabled) {
       const handleTick = () => {
-        const nextTickAt = random(minDelay!, maxDelay!);
+        const nextTickAt = random(minDelay, maxDelay);
         timeoutId.current = window.setTimeout(() => {
           savedCallback.current();
           handleTick();
@@ -67,8 +67,8 @@ const useRandomInterval = (
   return cancel;
 };
 
-const range = (start: number, end?: number, step: number = 1): number[] => {
-  let output: number[] = [];
+const range = (start: number, end: number, step = 1): number[] => {
+  const output: number[] = [];
   if (typeof end === "undefined") {
     end = start;
     start = 0;
@@ -125,7 +125,7 @@ const Sparkles: React.FC<SparklesProps> = ({
   ...delegated
 }) => {
   const [sparkles, setSparkles] = React.useState<Sparkle[]>(() => {
-    return range(3).map(() => generateSparkle(color));
+    return range(3,3,3).map(() => generateSparkle(color));
   });
 
   const prefersReducedMotion = usePrefersReducedMotion();

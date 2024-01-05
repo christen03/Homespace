@@ -4,10 +4,11 @@ import aboutHeader from "../../../public/about-header.jpg";
 import Image from "next/image";
 import geisel from "../../../public/geisel.jpeg";
 import collab from "../../../public/collaboration.jpg";
-import TeamMember from "../_components/team-member";
+import TeamMemberCard from "../_components/team-member";
+import { TeamMember } from "../_components/team";
 import teamMemberData from "../_components/team";
 
-export default async function About() {
+export default function About() {
   return (
     <div>
       <div className="relative h-[10rem] sm:h-[20rem]">
@@ -30,7 +31,7 @@ export default async function About() {
         <div className="absolute left-1/2 top-1/2 z-20 w-full -translate-x-1/2 -translate-y-1/2 transform text-center text-white">
           <h1 className="text-3xl font-medium sm:text-5xl">
             About{" "}
-            <span className="text-accent font-bold leading-normal">
+            <span className="font-bold leading-normal text-accent">
               Homespace
             </span>{" "}
             and Team
@@ -40,7 +41,7 @@ export default async function About() {
       <div className="mx-10 mt-8 flex flex-col">
         <h1 className="text-3xl font-medium text-gray-600 sm:text-4xl">
           The Story Behind{" "}
-          <span className="text-accent font-bold leading-normal">
+          <span className="font-bold leading-normal text-accent">
             Homespace
           </span>{" "}
         </h1>
@@ -70,8 +71,8 @@ export default async function About() {
               Our commitment to revolutionizing the student housing experience
               stems from our desire to make a genuine impact. Homespace strives
               not only to solve the immediate housing concerns but also to
-              become an indispensable companion throughout a student's academic
-              pursuit.
+              become an indispensable companion throughout a student&apos;s
+              academic pursuit.
             </div>
             <div className="mt-4">
               Join us as we embark on this transformative journey, driven by our
@@ -81,7 +82,7 @@ export default async function About() {
               of security and belonging within the academic community.
             </div>
           </div>
-          <div className="mt-4 flex w-full flex-col flex-wrap items-center justify-center sm:mt-0 sm:w-2/5 pl-10">
+          <div className="mt-4 flex w-full flex-col flex-wrap items-center justify-center pl-10 sm:mt-0 sm:w-2/5">
             {/* Inserted images */}
             <div className="w-[30rem] rounded-2xl border-accent">
               <Image
@@ -104,8 +105,8 @@ export default async function About() {
         </div>
 
         <div className="mb-10 mt-8 grid grid-cols-1 gap-8 px-16 sm:grid-cols-2 md:grid-cols-3">
-          {teamMemberData.map((member: any, index: any) => (
-            <TeamMember
+          {teamMemberData.map((member: TeamMember, index: any) => (
+            <TeamMemberCard
               key={index} // Ensure to provide a unique key for each component in the array
               name={member.name}
               headshot={member.headshot}
