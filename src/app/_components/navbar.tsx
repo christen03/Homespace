@@ -75,7 +75,7 @@ function Navbar() {
               About
             </Link>
           </div>
-          <div className="px-16">
+          {/* <div className="px-16">
             <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 py-3">
               <Link
                 href="/create-listing"
@@ -84,9 +84,9 @@ function Navbar() {
                 Add Your Apartment
               </Link>
             </div>
-          </div>
+          </div> */}
 
-          <div className="mt-2 text-center">
+          {/* <div className="mt-2 text-center">
             {session && session.user && session.user.image ? (
               <div className="flex items-center justify-center gap-1 p-1">
                 <Link href={"/api/auth/signout"}>
@@ -109,7 +109,7 @@ function Navbar() {
                 </Link>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
 
         <div className="bg-colorbng inline-flex hidden w-full items-center justify-center gap-[33px] px-12 py-4 sm:flex">
@@ -130,15 +130,15 @@ function Navbar() {
                 About
               </Link>
             </div>
-            <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 px-6 py-3">
+            {/* <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 px-6 py-3">
               <Link
                 href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
               >
                 Add Your Apartment
               </Link>
-            </div>
-            <div className="flex items-center justify-center">
+            </div> */}
+            {/* <div className="flex items-center justify-center">
               <div>
                 <div className="text-center">
                   {session && session.user && session.user.image ? (
@@ -165,7 +165,7 @@ function Navbar() {
                   )}
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
