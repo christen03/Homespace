@@ -61,11 +61,15 @@ model User {
     name          String?
     email         String?   @unique
     emailVerified DateTime? @map("email_verified")
+    phoneNumber  String?
+    biography     String?
+    location      String?
     image         String?
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
-
+    listings      Listing[]
+    
     @@map("users")
 }
 
@@ -88,7 +92,8 @@ model Listing {
     occupants      Int
     schoolDistance String
     imageSrc       String
-
+    createdById     String
+    createdBy       User @relation(fields: [createdById], references: [id])
 
     @@map("listings")
 }

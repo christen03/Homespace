@@ -18,7 +18,7 @@ function Footer() {
           <div className="flex items-center justify-center">
             <Link href="/dashboard" className="flex items-center justify-center">
               <div className="font-regular ml-20 flex flex-row text-md leading-normal text-gray-900">
-                <FaCopyright className="mt-1" /> &nbsp; 2023 Lynkpad &bull;
+                <FaCopyright className="mt-1" /> &nbsp; 2024 Homespace &bull;
               </div>
             </Link>
             <Link href="/dashboard" className="flex items-center justify-center">

@@ -5,6 +5,7 @@ import TitleForm from "../_components/ListingForms/TitleForm"
 import InformationForm from "../_components/ListingForms/InformationForm"
 import AddressForm from "../_components/ListingForms/AddressForm"
 import ImageForm from "../_components/ListingForms/ImageForm";
+import FinishedView from "../_components/ListingForms/FinishedView"
 
 type Inputs = {
     example: string
@@ -25,6 +26,9 @@ function ActiveFormComponent() {
         
         case 4:
             return <ImageForm />
+
+        case 5:
+            return <FinishedView />
     }
 }
 

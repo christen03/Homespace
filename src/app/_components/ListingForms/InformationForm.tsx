@@ -26,7 +26,7 @@ export default function InformationForm() {
         listingStore.setBathrooms(data.bathrooms)
         listingStore.setBedrooms(data.bedrooms)
         listingStore.setOccupants(data.occupants)
-        listingStore.setPrice(data.price)
+        listingStore.setPrice(parseInt(data.price))
         listingStore.onHandleNext();
     };
 
@@ -35,6 +35,21 @@ export default function InformationForm() {
             className="flex flex-col gap-4"
             onSubmit={handleSubmit(onHandleFormSubmit)}
         >
+            <div className="flex gap-1 flex-col">
+    <label htmlFor="price">Price:</label>
+    <Controller
+        control={control}
+        name="price"
+        render={({ field }) => (
+            <input
+                type="number"
+                {...field}
+                className="your-input-class"
+                placeholder="Enter the price"
+            />
+        )}
+    />
+</div>
             <div className="flex gap-1 flex-col">
                 <label htmlFor="bathrooms"># of bathrooms:</label>
                 <Controller

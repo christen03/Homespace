@@ -31,7 +31,7 @@ export default async function About() {
           <h1 className="text-3xl font-medium sm:text-5xl">
             About{" "}
             <span className="font-bold leading-normal text-teal-400">
-              Lynkpad
+              Homespace
             </span>{" "}
             and Team
           </h1>
@@ -41,18 +41,18 @@ export default async function About() {
         <h1 className="text-3xl font-medium text-gray-600 sm:text-4xl">
           The Story Behind{" "}
           <span className="font-bold leading-normal text-teal-400">
-            Lynkpad
+            Homespace
           </span>{" "}
         </h1>
         <div className="mt-4 flex flex-col sm:flex-row">
           <div className="w-full sm:w-3/5">
             <div>
-              At LynkPad, our story is rooted in a shared experience—facing the
+              At Homespace, our story is rooted in a shared experience—facing the
               housing challenges that many college students encounter. We
               observed the struggles faced by students seeking housing solutions
               at UC San Diego, recognizing a pervasive lack of dedicated
               resources in this realm. Driven by our collective passion to
-              address this pressing need, we set out to create LynkPad—a
+              address this pressing need, we set out to create Homespace-a
               platform dedicated to reshaping the student housing landscape. Our
               mission centers on providing an innovative, user-friendly solution
               that redefines how students discover and secure subleasing
@@ -60,7 +60,7 @@ export default async function About() {
             </div>
             <div className="mt-4">
               Inspired by the housing challenges prevalent in academic
-              communities, LynkPad aims to be the cornerstone for students
+              communities, Homespace aims to be the cornerstone for students
               embarking on their educational journey. We aspire to be the
               trusted link between students and their housing needs, offering a
               seamless, empowering experience that eases the stress associated
@@ -68,7 +68,7 @@ export default async function About() {
             </div>
             <div className="mt-4">
               Our commitment to revolutionizing the student housing experience
-              stems from our desire to make a genuine impact. LynkPad strives
+              stems from our desire to make a genuine impact. Homespace strives
               not only to solve the immediate housing concerns but also to
               become an indispensable companion throughout a student's academic
               pursuit.
