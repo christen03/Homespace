@@ -22,7 +22,7 @@ export default function SessionInfo() {
             <h1 className="text-center text-2xl font-medium">
                 Welcome to{" "}
                 <span className="font-bold leading-normal text-teal-600">
-                    Lynkpad
+                    Homespace
                 </span>
                 {session && `, ${firstName}`}! Here are some listings for you to
                 find your next home:

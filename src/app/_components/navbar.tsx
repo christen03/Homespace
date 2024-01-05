@@ -31,7 +31,7 @@ function Navbar() {
           <div>
             <Link href="/" className="flex items-center justify-center">
               <div className="text-3xl font-bold leading-normal text-teal-600">
-                Lynkpad
+                Homespace
               </div>
             </Link>
           </div>
@@ -72,7 +72,7 @@ function Navbar() {
               href="/about"
               className="text-center text-base font-semibold leading-snug tracking-tight text-black"
             >
-              About Lynkpad
+              About Homspace
             </Link>
           </div>
           <div className="flex items-center justify-center gap-1 rounded-[100px] bg-red-300 px-6 py-3 hover:bg-red-400">
@@ -123,7 +123,7 @@ function Navbar() {
             <Link href="/" className="flex items-center justify-center">
               <div className="relative h-[35px] w-[40px]"></div>
               <div className="text-3xl font-bold leading-normal text-teal-600">
-                Lynkpad
+                Homespace
               </div>
             </Link>
           </div>
@@ -133,7 +133,7 @@ function Navbar() {
                 href="/about"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-black"
               >
-                About Lynkpad
+                About Homespace
               </Link>
             </div>
             <div className="flex items-center justify-center gap-1 rounded-[100px] bg-red-300 px-6 py-3 hover:bg-red-400">
@@ -149,7 +149,7 @@ function Navbar() {
                 href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-black"
               >
-                Lynk Your Apartment
+                Add Your Apartment
               </Link>
             </div>
             <div className="flex items-center justify-center">
