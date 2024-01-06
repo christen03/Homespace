@@ -35,6 +35,9 @@ const WaitlistForm: React.FC = () => {
       createEmail.mutate({
         email: email,
       });
+      createSend.mutate({
+        email: email,
+      })
 
       // Email successfully submitted
       console.log("Email submitted successfully:", email);
@@ -49,6 +52,13 @@ const WaitlistForm: React.FC = () => {
       router.refresh();
     },
   });
+
+  const createSend = api.send.sendEmail.useMutation({
+    onSuccess: () => {
+      router.refresh();
+    },
+  });
+
   return (
     <div className="transition-opacity duration-500 ease-in-out">
       {!submitted ? (
