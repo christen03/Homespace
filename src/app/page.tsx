@@ -1,20 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import WaitlistForm from "./waitlist-form";
+import WaitlistForm from "./_components/ListingForms/waitlist-form";
 import Sparkles from "./_components/sparkles";
+import demo from "../../public/launchDemo.png";
+import Image from "next/image";
 import house from "./houseicon.svg";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { TbHomeCheck } from "react-icons/tb";
 import { FaArrowsToCircle } from "react-icons/fa6";
 
 export default function Launch() {
-  const handleFormSubmit = (email: string) => {
-    // Handle form submission logic here (e.g., API calls)
-    console.log("Form submitted with email:", email);
-    // Additional logic as needed
-  };
-
   return (
     <div className="bg-colorbng">
       <div className="bg-colorbng">
@@ -52,66 +48,41 @@ export default function Launch() {
                   Join our wait list to stay updated!
                 </p>
               </div>
-              <WaitlistForm onSubmit={handleFormSubmit} />
+              <WaitlistForm />
             </Sparkles>
           </div>
         </div>
       </div>
       <div className="mt-20 sm:px-20">
-        <div className="mx-10 mt-8 flex flex-col rounded-3xl bg-gray-100 px-6 py-6 sm:flex-row sm:px-16 sm:py-12">
-          <div className="sm:w-3/5">
-            <h1 className="text-xl font-medium text-colorbng sm:text-4xl">
+        <div className="mx-10 mt-8 flex flex-col text-center rounded-3xl px-6 py-6 sm:px-16 sm:py-12">
+
+            <h1 className="text-xl font-medium text-white sm:text-3xl">
               List & Find with{" "}
-              <span className="font-bold leading-normal text-colorbng">
+              <span className="font-bold leading-normal text-white">
                 Homespace
               </span>
             </h1>
             <div className="min mt-4 flex flex-col">
-              <div className="w-full text-gray-600">
+              <div className="w-full text-white">
                 <div>
-                  <p className="mt-4 text-lg sm:text-2xl">
+                  <p className="mt-4 text-lg sm:text-xl">
                     We are a platform that helps students list their apartments
                     and find subleases <b>ahead of time.</b>
                   </p>
-                  <p className="mt-4 text-lg sm:text-2xl">
+                  <p className="mt-4 text-lg sm:text-xl">
                     Our goal is to provide students with an ideal living space:
                     a home away from home.
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="mt-4 flex items-center justify-center sm:mt-0 sm:w-2/5">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              stroke="#000000"
-              className="h-64 "
-            >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                stroke="#CCCCCC"
-                stroke-width="2.4"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                {" "}
-                <path
-                  d="M14 21.0001V15.0001H10V21.0001M19 9.77818V16.2001C19 17.8802 19 18.7203 18.673 19.362C18.3854 19.9265 17.9265 20.3855 17.362 20.6731C16.7202 21.0001 15.8802 21.0001 14.2 21.0001H9.8C8.11984 21.0001 7.27976 21.0001 6.63803 20.6731C6.07354 20.3855 5.6146 19.9265 5.32698 19.362C5 18.7203 5 17.8802 5 16.2001V9.77753M21 12.0001L15.5668 5.96405C14.3311 4.59129 13.7133 3.9049 12.9856 3.65151C12.3466 3.42894 11.651 3.42899 11.0119 3.65165C10.2843 3.90516 9.66661 4.59163 8.43114 5.96458L3 12.0001"
-                  stroke="#F5D769"
-                  stroke-width="1.44"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>{" "}
-              </g>
-            </svg>
+            
           </div>
         </div>
       </div>
-      <div className="mx-10 mt-32 sm:mx-40">
+      <div className="mx-10 mt-4 sm:mx-20">
+        <Image alt="demo" src={demo} />
+      </div>
+      <div className="mx-10 mt-24 sm:mx-40">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8">
           <div className="flex flex-col items-center justify-center text-center">
             <HiOutlineInformationCircle className="text-6xl text-secondary sm:text-8xl" />
