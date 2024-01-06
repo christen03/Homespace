@@ -4,6 +4,9 @@ import Link from "next/link";
 import WaitlistForm from "./waitlist-form";
 import Sparkles from "./_components/sparkles";
 import house from "./houseicon.svg";
+import { HiOutlineInformationCircle } from "react-icons/hi";
+import { TbHomeCheck } from "react-icons/tb";
+import { FaArrowsToCircle } from "react-icons/fa6";
 
 export default function Launch() {
   const handleFormSubmit = (email: string) => {
@@ -89,8 +92,8 @@ export default function Launch() {
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g
                 id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 stroke="#CCCCCC"
                 stroke-width="2.4"
               ></g>
@@ -100,16 +103,46 @@ export default function Launch() {
                   d="M14 21.0001V15.0001H10V21.0001M19 9.77818V16.2001C19 17.8802 19 18.7203 18.673 19.362C18.3854 19.9265 17.9265 20.3855 17.362 20.6731C16.7202 21.0001 15.8802 21.0001 14.2 21.0001H9.8C8.11984 21.0001 7.27976 21.0001 6.63803 20.6731C6.07354 20.3855 5.6146 19.9265 5.32698 19.362C5 18.7203 5 17.8802 5 16.2001V9.77753M21 12.0001L15.5668 5.96405C14.3311 4.59129 13.7133 3.9049 12.9856 3.65151C12.3466 3.42894 11.651 3.42899 11.0119 3.65165C10.2843 3.90516 9.66661 4.59163 8.43114 5.96458L3 12.0001"
                   stroke="#F5D769"
                   stroke-width="1.44"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>{" "}
               </g>
             </svg>
           </div>
         </div>
       </div>
-
-      <div className="h-[30rem] bg-colorbng"></div>
+      <div className="mx-10 mt-32 sm:mx-40">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8">
+          <div className="flex flex-col items-center justify-center text-center">
+            <HiOutlineInformationCircle className="text-6xl text-secondary sm:text-8xl" />
+            <h2 className="mt-4 text-xl font-medium text-white sm:text-2xl">
+              Comprehensive Information
+            </h2>
+            <p className="font-regular text-lg text-gray-300 sm:text-xl">
+              Find accurate and relevant information
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-center text-center">
+            <TbHomeCheck className="text-6xl text-secondary sm:text-8xl" />
+            <h2 className="mt-4 text-xl font-medium text-white sm:text-2xl">
+              <i>Real</i> &nbsp;Listings
+            </h2>
+            <p className="font-regular text-lg text-gray-300 sm:text-xl">
+              Find accurate and relevant information
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-center text-center">
+            <FaArrowsToCircle className="text-6xl text-secondary sm:text-8xl" />
+            <h2 className="mt-4 text-xl font-medium text-white sm:text-2xl">
+              All in One Place
+            </h2>
+            <p className="font-regular text-lg text-gray-300 sm:text-xl">
+              Sublease information is consolidated in one place
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="h-[10rem] bg-colorbng"></div>
     </div>
   );
 }
