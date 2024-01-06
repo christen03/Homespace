@@ -23,14 +23,11 @@ const WaitlistForm: React.FC = () => {
     // Reset form data after submission (optional)
     setFormData({ email: "" });
 
-    try {
-      onSubmit(formData.email);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    // Call the onSubmit prop with the form data
+    onSubmit(formData.email);
   };
 
-  const onSubmit = (email: string) => {
+  const onSubmit = async (email: string) => {
     try {
       createEmail.mutate({
         email: email,
@@ -40,7 +37,6 @@ const WaitlistForm: React.FC = () => {
       console.log("Email submitted successfully:", email);
     } catch (error) {
       console.error("Error:", error);
-      throw error; // Propagate the error upwards if necessary
     }
   };
 
