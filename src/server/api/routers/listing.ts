@@ -10,6 +10,24 @@ export const listingRouter = createTRPCRouter({
   getMany: protectedProcedure.query(({ ctx }) => {
     return ctx.db.listing.findMany();
   }),
+  
+  filterByLocation: protectedProcedure
+  .input(z.object({
+    longitude: z.number(),
+    latitude: z.number(),
+  }))
+  .query(({ ctx, input }) => {
+    const METERS_PER_MILE = 1609.34;
+    return ctx.db.listing.findRaw({
+      filter: {
+        location: {
+          $geoWithin: {
+            $centerSphere: [[input.longitude, input.latitude], 20 / METERS_PER_MILE],
+          }
+        }
+      }
+    });
+  }),
   createOne: protectedProcedure
     .input(
       z.object({
@@ -17,9 +35,11 @@ export const listingRouter = createTRPCRouter({
         price: z.number().min(1),
         bedrooms: z.number().min(1),
         bathrooms: z.number().min(1),
-        occupants: z.number().min(1),
-        schoolDistance: z.string().min(1),
-        imageSrc: z.string().min(1),
+        occupants: z.number(),
+        longitude: z.number(),
+        latitude: z.number(),
+        addressString: z.string().min(1),
+        imageSrcs: z.array(z.string()).min(1),
         // createdBy: z.string().min(1).default("undefined"),
       }),
     )
@@ -33,8 +53,12 @@ export const listingRouter = createTRPCRouter({
           bedrooms: input.bedrooms,
           bathrooms: input.bathrooms,
           occupants: input.occupants,
-          schoolDistance: input.schoolDistance,
-          imageSrc: input.imageSrc,
+          location:{
+            type: "Point",
+            coordinates: [input.longitude, input.latitude]
+          },
+          addressString: input.addressString,
+          imageSrcs: input.imageSrcs,
           createdById: ctx.session.user.id,
         },
       });

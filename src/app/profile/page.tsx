@@ -111,7 +111,6 @@ export default function Page() {
               price={listing.price}
               bathrooms={listing.bathrooms}
               bedrooms={listing.bedrooms}
-              schoolDistance={listing.schoolDistance}
               occupants={listing.occupants}
               imgSrc={listing.imageSrc}
               createdBy={listing.createdById}

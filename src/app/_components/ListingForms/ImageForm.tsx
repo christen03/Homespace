@@ -11,8 +11,8 @@ type TFormValues = {
 export default function ImageForm() {
   const router = useRouter();
   const listingStore = useListingStore();
-  const [image, setImage] = useState("");
-  const [imageUrl, setImageUrl] = useState("")
+  const [base64Images, setBase64Images] = useState<string[]>([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([])
 
   const { register, handleSubmit } = useForm<TFormValues>({
     defaultValues: { image: listingStore.image },
@@ -20,7 +20,6 @@ export default function ImageForm() {
 
 
   const onHandleFormSubmit = (data: TFormValues) => {
-    listingStore.setImageSrc(imageUrl)
     listingStore.onHandleNext()
     createListing.mutate({
       title: listingStore.title,
@@ -28,14 +27,16 @@ export default function ImageForm() {
       bedrooms: listingStore.bedrooms,
       bathrooms: listingStore.bathrooms,
       occupants: listingStore.occupants,
-      schoolDistance: listingStore.schoolDistance,
-      imageSrc: imageUrl
+      longitude: listingStore.longitude,
+      latitude: listingStore.latitude,
+      addressString: listingStore.addressString,
+      imageSrcs: imageUrls
     });
   }
 
-  const uploadImg = api.image.uploadImage.useMutation({
+  const uploadImg = api.image.uploadImages.useMutation({
     onSuccess: (data) => {
-      setImageUrl(data)
+      setImageUrls(data)
       router.refresh();
     },
   });
@@ -47,11 +48,12 @@ export default function ImageForm() {
   });
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const base64String = await convertToBase64(file);
-      setImage(base64String);
-      listingStore.setImage(base64String);
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files);
+      const base64Strings = await Promise.all(filesArray.map(file => convertToBase64(file)));
+      setBase64Images(base64Strings);
+      // Assuming you want to store all images in the listingStore, you can update it accordingly
+      listingStore.setImageSrcs(base64Strings);
     }
   };
 
@@ -80,7 +82,7 @@ export default function ImageForm() {
       <button
         onClick={(e) => {
           e.preventDefault();
-          uploadImg.mutate({ image });
+          uploadImg.mutate({ images: base64Images });
         }}
         className="inline-block h-11 rounded-md bg-blue-600 px-6 font-semibold text-white"
       >
@@ -99,6 +101,7 @@ export default function ImageForm() {
             onChange={handleImageChange} // Handle file change
             className="h-11 rounded-md border px-4 focus:outline-blue-500"
             accept="image/*"
+            multiple
             required={true}
           />
         </div>
@@ -121,9 +124,16 @@ export default function ImageForm() {
             />
           )}
 
-          <h3 className="mb-2 text-xl font-semibold">
-            AWS Image url: {imageUrl}
-          </h3>
+<div className="mt-4">
+  <h3 className="mb-2 text-xl font-semibold">
+    AWS Image URLs:
+  </h3>
+  {imageUrls.map((url, index) => (
+    <p key={index} className="mb-2">
+      {url}
+    </p>
+  ))}
+</div>
         </div>
       </form>
     </div>

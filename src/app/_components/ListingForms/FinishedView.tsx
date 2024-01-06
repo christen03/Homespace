@@ -17,8 +17,12 @@ return (
         <p>Bedrooms: {listingStore.bedrooms}</p>
         <p>Bathrooms: {listingStore.bathrooms}</p>
         <p>Occupants: {listingStore.occupants}</p>
-        <p>School Distance: {listingStore.schoolDistance}</p>
-        <img src={listingStore.imageSrc} alt={listingStore.title} />
+        <p>Address: {listingStore.addressString}</p>
+        <p>Longitude: {listingStore.longitude}</p>
+        <p>Latitude: {listingStore.latitude}</p>
+        {listingStore.imageSrcs.map((src, index) => (
+          <img key={index} src={src} alt={`${listingStore.title} ${index + 1}`} />
+        ))}
       </div>
     </div>
   )

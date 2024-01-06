@@ -5,7 +5,7 @@ import Image from "next/image";
 import geisel from "../../../public/geisel.jpeg";
 import collab from "../../../public/collaboration.jpg";
 import TeamMemberCard from "../_components/team-member";
-import { TeamMember } from "../_components/team";
+import { type TeamMember } from "../_components/team";
 import teamMemberData from "../_components/team";
 
 export default function About() {

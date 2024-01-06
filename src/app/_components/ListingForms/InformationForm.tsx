@@ -1,8 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
-
 import { useListingStore } from "~/stores/listing";
 import Counter from "../Counter";
-import { string } from "zod";
 
 type InfoFormValues = {
     bedrooms: number;
@@ -14,7 +12,7 @@ type InfoFormValues = {
 export default function InformationForm() {
 
     const listingStore = useListingStore();
-    const { handleSubmit, control, setValue } = useForm<InfoFormValues>({
+    const { handleSubmit, control, setValue, setError, clearErrors, formState: { errors } } = useForm<InfoFormValues>({
         defaultValues: {
             bedrooms: listingStore.bathrooms,
             bathrooms: listingStore.bathrooms,
@@ -24,25 +22,34 @@ export default function InformationForm() {
     });
 
     const onHandleFormSubmit = (data: InfoFormValues) => {
-      listingStore.setBathrooms(data.bathrooms);
-      listingStore.setBedrooms(data.bedrooms);
-      listingStore.setOccupants(data.occupants);
+        if (data.bathrooms <= 0 || data.bedrooms <= 0 || data.price <= 0) {
+            setError("root", {
+                type: "manual",
+                message: "Please ensure all values greater than 0.",
+            });
+            return;
+        }
+        clearErrors("root");
 
-      let priceAsNumber: number | undefined = undefined;
+        listingStore.setBathrooms(data.bathrooms);
+        listingStore.setBedrooms(data.bedrooms);
+        listingStore.setOccupants(data.occupants);
 
-      // Check if data.price is a string and convert it to a number
-      if (typeof data.price === "string") {
-        priceAsNumber = parseInt(data.price, 10);
-      } else {
-        // If it's not a string, it might already be a number
-        priceAsNumber = data.price;
-      }
+        let priceAsNumber: number | undefined = undefined;
 
-      // Check if price is a valid number
-     
-        listingStore.setPrice(priceAsNumber!);
-        listingStore.onHandleNext();
-      
+        // Check if data.price is a string and convert it to a number
+        if (typeof data.price === "string") {
+            priceAsNumber = parseInt(data.price, 10);
+        } else {
+            // If it's not a string, it might already be a number
+            priceAsNumber = data.price;
+        }
+
+        // Check if price is a valid number
+        if (priceAsNumber && !isNaN(priceAsNumber)) {
+            listingStore.setPrice(priceAsNumber);
+            listingStore.onHandleNext();
+        }
     };
 
     return (
@@ -51,20 +58,20 @@ export default function InformationForm() {
             onSubmit={handleSubmit(onHandleFormSubmit)}
         >
             <div className="flex gap-1 flex-col">
-    <label htmlFor="price">Price:</label>
-    <Controller
-        control={control}
-        name="price"
-        render={({ field }) => (
-            <input
-                type="number"
-                {...field}
-                className="your-input-class"
-                placeholder="Enter the price"
-            />
-        )}
-    />
-</div>
+                <label htmlFor="price">Price:</label>
+                <Controller
+                    control={control}
+                    name="price"
+                    render={({ field }) => (
+                        <input
+                            type="number"
+                            {...field}
+                            className="your-input-class"
+                            placeholder="Enter the price"
+                        />
+                    )}
+                />
+            </div>
             <div className="flex gap-1 flex-col">
                 <label htmlFor="bathrooms"># of bathrooms:</label>
                 <Controller
@@ -90,7 +97,7 @@ export default function InformationForm() {
                     render={({ field }) => (
                         <Counter
                             title="Bedrooms"
-                            subtitle="Set the number of bathrooms"
+                            subtitle="Set the number of bedrooms"
                             value={field.value}
                             onChange={(newValue) => {
                                 setValue('bedrooms', newValue, { shouldValidate: true });
@@ -100,7 +107,7 @@ export default function InformationForm() {
                 />
             </div>
             <div className="flex gap-1 flex-col">
-                <label htmlFor="bedrooms"># of occupants:</label>
+                <label htmlFor="occupants"># of occupants:</label>
                 <Controller
                     control={control}
                     name="occupants"
@@ -116,6 +123,7 @@ export default function InformationForm() {
                     )}
                 />
             </div>
+            {errors.root && <p>{errors.root.message}</p>}
             <div className="flex justify-end">
                 <button className="h-11 px-6 inline-block bg-blue-600 font-semibold text-white rounded-md">
                     Next
