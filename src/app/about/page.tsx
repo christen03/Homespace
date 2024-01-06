@@ -113,39 +113,28 @@ export default function About() {
                 deserves a home that is not only affordable but also conducive
                 to their well-being and academic success.
               </p>
-          <div className="mt-10 flex w-full flex-col flex-wrap items-center justify-center sm:pl-10 sm:mt-0 sm:w-2/5">
-            {/* Inserted images */}
-            <div className="w-84 rounded-2xl border-accent">
-              <Image
-                src={geisel}
-                alt="Geisel Library"
-                className="rounded-lg"
-                layout="responsive"
-                width={500}
-                height={350}
-              />
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex flex-col items-center justify-center bg-colorbng">
-        <h1 className="font-source-sans-pro mb-8 text-4xl font-bold text-accent sm:text-5xl">
-          Meet The Team
-        </h1>
+        <div className="flex flex-col items-center justify-center bg-colorbng">
+          <h1 className="font-source-sans-pro mb-8 text-4xl font-bold text-accent sm:text-5xl">
+            Meet The Team
+          </h1>
 
-        <div className="mb-32 mt-8 grid grid-cols-1 gap-28 px-12 py-5 sm:grid-cols-2 sm:px-32 md:grid-cols-4">
-          {teamMemberData.map((member: TeamMember, index: any) => (
-            <TeamMemberCard
-              key={index} // Ensure to provide a unique key for each component in the array
-              name={member.name}
-              headshot={member.headshot}
-              college={member.college}
-              role={member.role}
-              curPosition={member.curPosition}
-              linkedin={member.linkedin}
-            />
-          ))}
+          <div className="mb-32 mt-8 grid grid-cols-1 gap-28 px-12 py-5 sm:grid-cols-2 sm:px-32 md:grid-cols-4">
+            {teamMemberData.map((member: TeamMember, index: any) => (
+              <TeamMemberCard
+                key={index} // Ensure to provide a unique key for each component in the array
+                name={member.name}
+                headshot={member.headshot}
+                college={member.college}
+                role={member.role}
+                curPosition={member.curPosition}
+                linkedin={member.linkedin}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

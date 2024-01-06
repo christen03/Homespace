@@ -10,7 +10,7 @@ import { FaPerson } from "react-icons/fa6";
 interface TeamMemberProps {
   name: string;
   headshot: StaticImageData;
-  role: string;
+  role: string; 
   college: string;
   curPosition: string;
   linkedin: string;
@@ -37,7 +37,7 @@ function TeamMemberCard({
           />
         </div>
         <p className="mt-1 text-2xl font-bold text-white">{name}</p>
-        <p className="text-lg mt-1 text-gray-300">{role}</p>
+        <p className="text-md mt-1 text-gray-300">{role}</p>
       </div>
     </Link>
   );
