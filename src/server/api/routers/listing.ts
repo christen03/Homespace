@@ -7,7 +7,7 @@ import {
 } from "~/server/api/trpc";
 
 export const listingRouter = createTRPCRouter({
-  getMany: protectedProcedure.query(({ ctx }) => {
+  getMany: publicProcedure.query(({ ctx }) => {
     return ctx.db.listing.findMany();
   }),
   
@@ -40,7 +40,6 @@ export const listingRouter = createTRPCRouter({
         latitude: z.number(),
         addressString: z.string().min(1),
         imageSrcs: z.array(z.string()).min(1),
-        // createdBy: z.string().min(1).default("undefined"),
       }),
     )
     .mutation(async ({ ctx, input }) => {
