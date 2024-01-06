@@ -9,9 +9,6 @@ import house from "./houseicon.svg";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { TbHomeCheck } from "react-icons/tb";
 import { FaArrowsToCircle } from "react-icons/fa6";
-import { HiOutlineInformationCircle } from "react-icons/hi";
-import { TbHomeCheck } from "react-icons/tb";
-import { FaArrowsToCircle } from "react-icons/fa6";
 
 export default function Launch() {
   return (
