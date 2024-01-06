@@ -1,11 +1,9 @@
 import ajHeadshot from "../../../public/AkshatJainHeadshot.jpg";
 import christen from "../../../public/christen.jpg";
 import nhathan from "../../../public/nhathan.jpg";
-import shauna from "../../../public/shauna.jpg"
+import shauna from "../../../public/shauna.jpg";
 import def from "../../../public/default.jpg";
 import { type StaticImageData } from "next/image";
-
-
 
 export interface TeamMember {
   name: string;
@@ -45,12 +43,10 @@ const teamMemberData: TeamMember[] = [
     name: "Shauna Huang",
     headshot: shauna,
     college: "B.S. Cognitive Science",
-    role: "Public Relations & Marketing",
+    role: "Marketing",
     linkedin: "https://www.linkedin.com/in/shaunahuang/",
-    curPosition: "Incoming Marketing Manager at Atlassian"
-
-  }
+    curPosition: "Incoming Marketing Manager at Atlassian",
+  },
 ];
 
 export default teamMemberData;
-

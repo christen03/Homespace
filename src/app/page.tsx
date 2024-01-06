@@ -54,37 +54,38 @@ export default function Launch() {
         </div>
       </div>
       <div className="mt-20 sm:px-20">
-        <div className="mx-10 mt-8 flex flex-col text-center rounded-3xl px-6 py-6 sm:px-16 sm:py-12">
-
-            <h1 className="text-xl font-medium text-white sm:text-3xl">
-              List & Find with{" "}
-              <span className="font-bold leading-normal text-white">
-                Homespace
-              </span>
-            </h1>
-            <div className="min mt-4 flex flex-col">
-              <div className="w-full text-white">
-                <div>
-                  <p className="mt-4 text-lg sm:text-xl">
-                    We are a platform that helps students list their apartments
-                    and find subleases <b>ahead of time.</b>
-                  </p>
-                  <p className="mt-4 text-lg sm:text-xl">
-                    Our goal is to provide students with an ideal living space:
-                    a home away from home.
-                  </p>
-                </div>
+        <div className="mx-10 mt-8 flex flex-col rounded-3xl px-6 py-6 text-center sm:px-16 sm:py-12">
+          <h1 className="text-xl font-medium text-white sm:text-3xl">
+            List & Find with{" "}
+            <span className="font-bold leading-normal text-white">
+              Homespace
+            </span>
+          </h1>
+          <div className="min mt-4 flex flex-col">
+            <div className="w-full text-white">
+              <div>
+                <p className="mt-4 text-lg sm:text-xl">
+                  We are a platform that helps students list their apartments
+                  and find subleases <b>ahead of time.</b>
+                </p>
+                <p className="mt-4 text-lg sm:text-xl">
+                  Our goal is to provide students with an ideal living space: a
+                  home away from home.
+                </p>
               </div>
-            
+            </div>
           </div>
         </div>
       </div>
-      
+
       <div className="mx-10 mt-4 sm:mx-20">
-        <Image alt="demo" src={demo} className="rounded-2xl shadow-lg border-4 border-gray-600"/>
+        <Image
+          alt="demo"
+          src={demo}
+          className="rounded-2xl border-4 border-gray-600 shadow-lg"
+        />
       </div>
 
-      
       <div className="mx-10 mt-24 sm:mx-40">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8">
           <div className="flex flex-col items-center justify-center text-center">
@@ -99,7 +100,7 @@ export default function Launch() {
           <div className="flex flex-col items-center justify-center text-center">
             <TbHomeCheck className="text-6xl text-secondary sm:text-8xl" />
             <h2 className="mt-4 text-xl font-medium text-white sm:text-2xl">
-              <i>Real</i> &nbsp;Listings
+              Real &nbsp;Listings
             </h2>
             <p className="font-regular text-lg text-gray-300 sm:text-xl">
               Find accurate and relevant information
