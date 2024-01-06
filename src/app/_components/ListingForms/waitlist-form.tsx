@@ -1,17 +1,15 @@
 // WaitlistForm.tsx
 
 import React, { useState } from "react";
+import { api } from "~/trpc/react";
+import { useRouter } from "next/navigation";
 
-interface WaitlistFormProps {
-  onSubmit: (email: string) => void;
-}
-
-const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit }) => {
+const WaitlistForm: React.FC = () => {
   const [formData, setFormData] = useState({
     email: "",
   });
   const [submitted, setSubmitted] = useState(false);
-
+  const router = useRouter();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setFormData({ email: value });
@@ -29,6 +27,24 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit }) => {
     onSubmit(formData.email);
   };
 
+  const onSubmit = async (email: string) => {
+    try {
+      createEmail.mutate({
+        email: email,
+      });
+
+      // Email successfully submitted
+      console.log("Email submitted successfully:", email);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const createEmail = api.email.createOne.useMutation({
+    onSuccess: () => {
+      router.refresh();
+    },
+  });
   return (
     <div className="transition-opacity duration-500 ease-in-out">
       {!submitted ? (
@@ -61,7 +77,6 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit }) => {
       )}
     </div>
   );
-
 };
 
 export default WaitlistForm;

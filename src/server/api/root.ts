@@ -5,6 +5,7 @@ import { list } from "postcss";
 import { listingRouter } from "./routers/listing";
 import { imageRouter } from "./routers/image";
 import { userRouter } from "./routers/user";
+import { emailRouter } from "./routers/email";
 
 /**
  * This is the primary router for your server.
@@ -16,7 +17,8 @@ export const appRouter = createTRPCRouter({
   test: testRouter,
   listing: listingRouter,
   image: imageRouter,
-  users: userRouter
+  users: userRouter,
+  email: emailRouter,
 });
 
 // export type definition of API
