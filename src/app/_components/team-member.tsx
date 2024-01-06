@@ -26,7 +26,7 @@ function TeamMemberCard({
 }: TeamMemberProps) {
   return (
     <Link href={linkedin}>
-      <div className="flex w-full flex-col items-center transition duration-300 hover:scale-[1.2]">
+      <div className="flex w-full flex-col items-center transition duration-300 hover:scale-[1.05]">
         <div className="mb-4 w-full h-auto overflow-hidden rounded-full">
           <Image
             alt={name}
@@ -36,8 +36,8 @@ function TeamMemberCard({
             layout="responsive"
           />
         </div>
-        <p className="text-lg font-bold text-white">{name}</p>
-        <p className="text-sm text-white">{role}</p>
+        <p className="mt-1 text-2xl font-bold text-white">{name}</p>
+        <p className="text-lg mt-1 text-gray-300">{role}</p>
       </div>
     </Link>
   );

@@ -29,7 +29,7 @@ const teamMemberData: TeamMember[] = [
     name: "Christen Xie",
     headshot: christen,
     college: "B.S. Computer Engineering",
-    role: "Developer",
+    role: "Software Engineer",
     linkedin: "https://www.linkedin.com/in/christen-xie-473ba61a1/",
     curPosition: "Software Engineer at Roll",
   },
@@ -37,17 +37,17 @@ const teamMemberData: TeamMember[] = [
     name: "Akshat Jain",
     headshot: ajHeadshot,
     college: "B.S. Computer Science",
-    role: "Developer",
+    role: "Software Engineer",
     linkedin: "https://linkedin.com/in/akshatja1n",
     curPosition: "Front End Developer at CAIDA",
   },
   {
     name: "Shauna Huang",
     headshot: shauna,
-    college: "D.N. Deez Nuts",
+    college: "B.S. Cognitive Science",
     role: "Public Relations & Marketing",
     linkedin: "https://www.linkedin.com/in/shaunahuang/",
-    curPosition: "nutsdeezer"
+    curPosition: "Incoming Marketing Manager at Atlassian"
 
   }
 ];
