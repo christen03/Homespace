@@ -82,9 +82,12 @@ export default function Launch() {
           </div>
         </div>
       </div>
+      
       <div className="mx-10 mt-4 sm:mx-20">
-        <Image alt="demo" src={demo} />
+        <Image alt="demo" src={demo} className="rounded-2xl shadow-lg border-4 border-gray-600"/>
       </div>
+
+      
       <div className="mx-10 mt-24 sm:mx-40">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8">
           <div className="flex flex-col items-center justify-center text-center">
