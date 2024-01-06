@@ -2,14 +2,12 @@
 
 import { api } from "~/trpc/react";
 import ListingCard from "./listing-card";
-import sample from "../../../public/sample-apartment.png";
-import sample2 from "../../../public/sample-apartment-2.jpeg";
 
 
 
-export default function ListingsInfo() {
-  const getListings = api.listing.getMany.useQuery();
-  const listings = getListings.data;
+export default function DefaultListingsInfo() {
+  const getManyQuery = api.listing.getMany.useQuery();
+  const listings=getManyQuery.data
 
   if (!listings) {
     return (
@@ -32,10 +30,10 @@ export default function ListingsInfo() {
               price={listing.price}
               bathrooms={listing.bathrooms}
               bedrooms={listing.bedrooms}
-              schoolDistance={listing.schoolDistance}
               occupants={listing.occupants}
-              imgSrc={listing.imageSrc}
+              imgSrcs={listing.imageSrcs}
               createdBy={listing.createdById}
+              addressString={listing.addressString}
             ></ListingCard>
           ))}
         </div>

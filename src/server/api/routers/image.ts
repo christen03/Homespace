@@ -7,41 +7,41 @@ import { useListingStore } from "~/stores/listing";
 // const listingR = useListingStore();
 
 export const imageRouter = createTRPCRouter({
-  uploadImage: protectedProcedure
+  uploadImages: protectedProcedure
     .input(
       z.object({
-        image: z.string().min(1), // Assuming the image is passed as a base64 string
+        images: z.array(z.string().min(1)), // Expect an array of base64 strings
       }),
     )
     .mutation(async ({ ctx, input }) => {
       try {
-        const myKey = `images/${ctx.session.user.id}-${Date.now()}.jpg`;
+        const publicUrls = await Promise.all(input.images.map(async (image, index) => {
+          const myKey = `images/${ctx.session.user.id}-${Date.now()}-${index}.jpg`;
 
-        const uploadParams: PutObjectCommandInput = {
-          Bucket: "lynkpad-listings",
-          Key: myKey, // Replace with your desired key structure
-          Body: Buffer.from(input.image, "base64"), // Convert base64 string to buffer
-          ContentType: "image/jpeg", // Replace with your image's content type
-        };
+          const uploadParams: PutObjectCommandInput = {
+            Bucket: "lynkpad-listings",
+            Key: myKey, // Replace with your desired key structure
+            Body: Buffer.from(image, "base64"), // Convert base64 string to buffer
+            ContentType: "image/jpeg", // Replace with your image's content type
+          };
 
-        // Upload image to Amazon S3
-        const uploadResult = await ctx.s3.send(
-          new PutObjectCommand(uploadParams),
-        );
+          // Upload image to Amazon S3
+          await s3.send(
+            new PutObjectCommand(uploadParams),
+          );
 
-        // Construct the public URL for the uploaded image
-        const publicUrl = `https://lynkpad-listings.s3.amazonaws.com/${encodeURIComponent(
-          myKey,
-        )}`;
+          // Construct the public URL for the uploaded image
+          return `https://lynkpad-listings.s3.amazonaws.com/${encodeURIComponent(
+            myKey,
+          )}`;
+        }));
 
-        console.log(publicUrl);
+        console.log(publicUrls);
 
-      //  listingR.setImageSrc(publicUrl);
-
-        return publicUrl; // Return the public URL as a response
+        return publicUrls; // Return the array of public URLs as a response
       } catch (error) {
-        console.error("Error uploading image to S3:", error);
-        throw new Error("Failed to upload image to S3");
+        console.error("Error uploading images to S3:", error);
+        throw new Error("Failed to upload images to S3");
       }
     }),
 });

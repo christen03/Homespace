@@ -22,6 +22,7 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+import { format } from "path";
 
 type TFormValues = {
   title: string;
@@ -34,10 +35,18 @@ type Location = {
 
 type PlacesAutoCompleteProps = {
   setSelected: Dispatch<SetStateAction<Location | null>>;
+  setFormattedAddress: Dispatch<SetStateAction<string>>;
 };
 
+
+type MapProps = {
+  selected: Location | null;
+  setSelected: Dispatch<SetStateAction<Location | null>>;
+  setFormattedAddress: Dispatch<SetStateAction<string>>;
+}
 const PlacesAutoComplete: React.FC<PlacesAutoCompleteProps> = ({
   setSelected,
+  setFormattedAddress
 }) => {
   const {
     ready,
@@ -55,8 +64,8 @@ const PlacesAutoComplete: React.FC<PlacesAutoCompleteProps> = ({
     if (results[0]) {
       const { lat, lng } = getLatLng(results[0]);
       const location: Location = { lat, lng };
-      console.log(location);
       setSelected(location);
+      setFormattedAddress(results[0].formatted_address);
     }
   };
 
@@ -81,12 +90,11 @@ const PlacesAutoComplete: React.FC<PlacesAutoCompleteProps> = ({
   );
 };
 
-function Map() {
+function Map({selected, setSelected, setFormattedAddress}: MapProps) {
   const ucsdGeoCode = useMemo(
     () => ({ lat: 32.8800604, lng: -117.2340135 }),
     [],
   );
-  const [selected, setSelected] = useState<Location | null>(null);
 
   useEffect(() => {
     console.log(selected, "new selected");
@@ -96,7 +104,7 @@ function Map() {
     <>
       <div className="relative">
         <div className="absolute left-1/2 top-0 z-20 w-72 -translate-x-1/2">
-          <PlacesAutoComplete setSelected={setSelected} />
+          <PlacesAutoComplete setSelected={setSelected} setFormattedAddress={setFormattedAddress}/>
         </div>
 
         <GoogleMap
@@ -112,6 +120,9 @@ function Map() {
 }
 
 export default function AddressForm() {
+
+  const [selected, setSelected] = useState<Location | null>(null)
+  const [formattedAddress, setFormattedAddress] = useState<string>("")
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
     libraries: ["places"],
@@ -123,9 +134,12 @@ export default function AddressForm() {
   });
 
   const onHandleFormSubmit = () => {
-    listingStore.setSchoolDistance("temp distance")
+    if(selected){
+      listingStore.setLatitude(selected.lat)
+      listingStore.setLongitude(selected.lng)
+      listingStore.setAddressString(formattedAddress)
+    }
     listingStore.onHandleNext();
-
   };
 
   if (!isLoaded) {
@@ -134,9 +148,9 @@ export default function AddressForm() {
 
   return (
     <>
-      <Map />
+      <Map selected={selected} setSelected={setSelected} setFormattedAddress={setFormattedAddress}/>
       <div className="flex justify-end">
-        <button onClick={onHandleFormSubmit} className="inline-block h-11 rounded-md bg-blue-600 px-6 font-semibold text-white">
+        <button onClick={onHandleFormSubmit} disabled={!selected} className="inline-block h-11 rounded-md bg-blue-600 px-6 font-semibold text-white">
           Next
         </button>
       </div>
@@ -152,3 +166,4 @@ export default function AddressForm() {
     </>
   );
 }
+

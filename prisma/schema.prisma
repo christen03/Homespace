@@ -90,8 +90,9 @@ model Listing {
     bedrooms       Int
     bathrooms      Int
     occupants      Int
-    schoolDistance String
-    imageSrc       String
+    location        Json 
+    addressString      String
+    imageSrcs       String[]
     createdById     String
     createdBy       User @relation(fields: [createdById], references: [id])
     createdAt DateTime @default(now())
