@@ -37,7 +37,7 @@ const teamMemberData: TeamMember[] = [
     headshot: ajHeadshot,
     college: "B.S. Computer Science",
     role: "Developer",
-    linkedin: "https://linkedin.com/in/akshatj1n",
+    linkedin: "https://linkedin.com/in/akshatja1n",
     curPosition: "Front End Developer at CAIDA",
   },
 ];
