@@ -98,7 +98,6 @@ export default function About() {
               </p>
             </div>
           </div>
-
           <div className="mb-8 flex w-full flex-col items-center sm:flex-row">
             <div className="flex w-full flex-col items-center justify-center text-center sm:w-1/5 sm:flex-row">
               <PiSealCheckLight className="text-8xl text-accent" />
@@ -114,6 +113,17 @@ export default function About() {
                 deserves a home that is not only affordable but also conducive
                 to their well-being and academic success.
               </p>
+          <div className="mt-10 flex w-full flex-col flex-wrap items-center justify-center sm:pl-10 sm:mt-0 sm:w-2/5">
+            {/* Inserted images */}
+            <div className="w-84 rounded-2xl border-accent">
+              <Image
+                src={geisel}
+                alt="Geisel Library"
+                className="rounded-lg"
+                layout="responsive"
+                width={500}
+                height={350}
+              />
             </div>
           </div>
         </div>
