@@ -26,26 +26,18 @@ function TeamMemberCard({
 }: TeamMemberProps) {
   return (
     <Link href={linkedin}>
-      <div className="flex w-full flex-col transition duration-300 hover:scale-[1.02]">
-        <div className="mb-10 w-full px-4">
-          <div className="aspect-w-1 aspect-h-1 relative w-full overflow-hidden rounded-t-2xl">
-            <div className="aspect-1x1">
-              <Image
-                alt={name}
-                src={headshot}
-              />
-            </div>
-          </div>
-          <div className="rounded-b-xl bg-white px-6">
-            <p className="ml-4 pt-4 text-lg sm:text-xl font-bold text-teal-600">{name}</p>
-            <p className="font-regular ml-4 text-xs sm:text-sm text-gray-900">{role}</p>
-            <p className="font-regular ml-4 text-xs sm:text-sm text-gray-900">{college}</p>
-            <p className="align-center text-sm sm:text-lg mb-6 mt-4 flex flex-row justify-center gap-3 font-semibold text-gray-800">
-              {curPosition}
-            </p>
-            <div className="align-center mt flex flex-row justify-center gap-3"></div>
-          </div>
+      <div className="flex w-full flex-col items-center transition duration-300 hover:scale-[1.2]">
+        <div className="mb-4 w-full h-auto overflow-hidden rounded-full">
+          <Image
+            alt={name}
+            src={headshot}
+            width={60} // Slightly decreased width
+            height={60} // Slightly decreased height
+            layout="responsive"
+          />
         </div>
+        <p className="text-lg font-bold text-white">{name}</p>
+        <p className="text-sm text-white">{role}</p>
       </div>
     </Link>
   );

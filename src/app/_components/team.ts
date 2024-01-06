@@ -1,6 +1,7 @@
 import ajHeadshot from "../../../public/AkshatJainHeadshot.jpg";
 import christen from "../../../public/christen.jpg";
 import nhathan from "../../../public/nhathan.jpg";
+import shauna from "../../../public/shauna.jpg"
 import def from "../../../public/default.jpg";
 import { type StaticImageData } from "next/image";
 
@@ -40,6 +41,15 @@ const teamMemberData: TeamMember[] = [
     linkedin: "https://linkedin.com/in/akshatja1n",
     curPosition: "Front End Developer at CAIDA",
   },
+  {
+    name: "Shauna Huang",
+    headshot: shauna,
+    college: "D.N. Deez Nuts",
+    role: "Public Relations & Marketing",
+    linkedin: "https://www.linkedin.com/in/shaunahuang/",
+    curPosition: "nutsdeezer"
+
+  }
 ];
 
 export default teamMemberData;

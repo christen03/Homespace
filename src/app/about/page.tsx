@@ -3,6 +3,7 @@ import sample from "../../../public/sample-apartment.png";
 import aboutHeader from "../../../public/about-header.jpg";
 import Image from "next/image";
 import geisel from "../../../public/geisel.jpeg";
+import icon from "../../../public/icon.svg";
 import collab from "../../../public/collaboration.jpg";
 import TeamMemberCard from "../_components/team-member";
 import { type TeamMember } from "../_components/team";
@@ -11,113 +12,117 @@ import teamMemberData from "../_components/team";
 export default function About() {
   return (
     <div>
-      <div className="relative h-[10rem] sm:h-[20rem]">
-        {/* Dark overlay */}
-        <div className="absolute inset-0 z-10 bg-black opacity-75"></div>
-
-        {/* Image */}
-        <div className="relative z-0 h-full">
-          <Image
-            src={aboutHeader}
-            alt={"header"}
-            className="h-full w-full object-cover"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
-          />
-        </div>
-
-        {/* Text */}
-        <div className="absolute left-1/2 top-1/2 z-20 w-full -translate-x-1/2 -translate-y-1/2 transform text-center text-white">
-          <h1 className="text-3xl font-medium sm:text-5xl">
-            About{" "}
-            <span className="font-bold leading-normal text-accent">
-              Homespace
-            </span>{" "}
-            and Team
-          </h1>
-        </div>
-      </div>
-      <div className="mx-10 mt-8 flex flex-col">
-        <h1 className="text-3xl font-medium text-gray-600 sm:text-4xl">
-          The Story Behind{" "}
-          <span className="font-bold leading-normal text-accent">
+      <div className="relative h-[80rem] sm:h-[30rem]">
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-colorbng">
+          <h1 className="font-source-sans-pro mb-8 text-5xl font-bold text-accent">
             Homespace
-          </span>{" "}
-        </h1>
-        <div className="mt-4 flex flex-col sm:flex-row">
-          <div className="w-full sm:w-3/5">
-            <div>
-              At Homespace, our story is rooted in a shared experience—facing
-              the housing challenges that many college students encounter. We
-              observed the struggles faced by students seeking housing solutions
-              at UC San Diego, recognizing a pervasive lack of dedicated
-              resources in this realm. Driven by our collective passion to
-              address this pressing need, we set out to create Homespace-a
-              platform dedicated to reshaping the student housing landscape. Our
-              mission centers on providing an innovative, user-friendly solution
-              that redefines how students discover and secure subleasing
-              options, regardless of their college or university.
-            </div>
-            <div className="mt-4">
-              Inspired by the housing challenges prevalent in academic
-              communities, Homespace aims to be the cornerstone for students
-              embarking on their educational journey. We aspire to be the
-              trusted link between students and their housing needs, offering a
-              seamless, empowering experience that eases the stress associated
-              with finding suitable accommodations.
-            </div>
-            <div className="mt-4">
-              Our commitment to revolutionizing the student housing experience
-              stems from our desire to make a genuine impact. Homespace strives
-              not only to solve the immediate housing concerns but also to
-              become an indispensable companion throughout a student&apos;s
-              academic pursuit.
-            </div>
-            <div className="mt-4">
-              Join us as we embark on this transformative journey, driven by our
-              shared experiences and fueled by the determination to create a
-              housing solution that empowers and supports students, transcending
-              the barriers of traditional housing searches and fostering a sense
-              of security and belonging within the academic community.
-            </div>
-          </div>
-          <div className="mt-10 flex w-full flex-col flex-wrap items-center justify-center sm:pl-10 sm:mt-0 sm:w-2/5">
-            {/* Inserted images */}
-            <div className="w-84 rounded-2xl border-accent">
-              <Image
-                src={geisel}
-                alt="Geisel Library"
-                className="rounded-lg"
-                layout="responsive"
-                width={500}
-                height={350}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="mt-8 flex flex-col bg-gray-100">
-        <div className="mx-10 mt-12 items-center justify-center text-center">
-          <h1 className="text-3xl font-medium text-colorbng sm:text-4xl">
-            Meet the Team
           </h1>
-        </div>
-
-        <div className="mb-10 mt-8 grid grid-cols-1 gap-8 px-16 sm:grid-cols-2 md:grid-cols-3">
-          {teamMemberData.map((member: TeamMember, index: any) => (
-            <TeamMemberCard
-              key={index} // Ensure to provide a unique key for each component in the array
-              name={member.name}
-              headshot={member.headshot}
-              college={member.college}
-              role={member.role}
-              curPosition={member.curPosition}
-              linkedin={member.linkedin}
-            />
-          ))}
+          <p className="text-md font-source-sans-pro mx-auto mb-8 max-w-screen-lg text-center font-medium leading-tight text-white">
+            Homespace is a comprehensive platform dedicated to simplifying the
+            subleasing process for students. By cultivating an off-campus
+            housing community, connecting students, and helping them discover
+            their ideal living space, one that truly feels like home.
+          </p>
         </div>
       </div>
+      <div className="flex flex-col items-center justify-center bg-colorbng">
+        <h1 className="font-source-sans-pro mb-8 text-5xl font-bold text-accent">
+          Our Story
+        </h1>
+        <div className="flex w-full justify-between px-8 py-14">
+          <div className="flex flex-1 flex-col items-center justify-center">
+            <Image
+              src={
+                "https://images.pexels.com/photos/2092450/pexels-photo-2092450.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              }
+              width={242.02}
+              height={186}
+              alt="sample"
+            />
+
+            <p className="pt-5 text-center text-2xl text-white">
+              {" "}
+              4 college students facing inflated housing prices & scammers
+            </p>
+          </div>
+          <div className="flex flex-1 flex-col items-center justify-center">
+            <p className="pb-5 text-center text-2xl text-white">
+              Connecting with other college students for leases
+            </p>
+            <Image
+              src={
+                "https://images.pexels.com/photos/2092450/pexels-photo-2092450.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              }
+              width={242.02}
+              height={186}
+              alt="sample"
+            />
+          </div>
+          <div className="flex flex-1 flex-col items-center justify-center">
+            <Image
+              src={
+                "https://images.pexels.com/photos/2092450/pexels-photo-2092450.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              }
+              width={242.02}
+              height={186}
+              alt="sample"
+            />
+
+            <p className="pt-5 text-center text-2xl text-white">
+              Why not create a marketplace to help students & unite the
+              community?
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center bg-colorbng pt-8">
+        <h1 className="font-source-sans-pro mb-8 text-5xl font-bold text-accent">
+          Our Values
+        </h1>
+        <div className="flex flex-col w-full px-20 py-14">
+  <div className="flex items-center mb-8 pl-20"> 
+    <Image src={icon} width={113} height={113} alt="Icon" />
+    <div className="pl-10">
+      <h3 className="text-2xl font-bold text-white pb-6">Community</h3>
+      <p className="text-white text-lg">Our platform is designed for students to connect, share experiences, and support each other in finding their next home. We hope to make the search for off-campus housing not just easier, but more enjoyable.</p>
+    </div>
+  </div>
+  <div className="flex items-center mb-8 pl-20"> 
+    <Image src={icon} width={113} height={113} alt="Icon" />
+    <div className="pl-10">
+      <h3 className="text-2xl font-bold text-white pb-6">Trust</h3>
+      <p className="text-white text-lg">We understand the challenges and uncertainties that come with subleasing, especially for students. Homespace is a transparent and secure environment for students to confidently explore their housing options. All listings are verified and all community guidelines are designed to maintain a trustworthy space.</p>
+    </div>
+  </div>
+  <div className="flex items-center mb-8 pl-20">
+    <Image src={icon} width={113} height={113} alt="Icon" />
+    <div className="pl-10">
+      <h3 className="text-2xl font-bold text-white pb-6">Quality</h3>
+      <p className="text-white text-lg">We are committed to ensuring students find a space that meets personalized needs. The Homespace team reviews each listing to meet our standards of comfort, safety, and value. Every students deserves a home that is not only affordable, but also conducive to their well-being and academic success.</p>
+    </div>
+  </div>
+</div>
+      </div>
+      <div className="flex flex-col items-center justify-center bg-colorbng">
+      <h1 className="font-source-sans-pro mb-8 text-5xl font-bold text-accent">
+Meet The Team        
+</h1>
+        
+<div className="mb-10 mt-8 grid grid-cols-1 gap-32 px-32 py-5 sm:grid-cols-2 md:grid-cols-4">
+  {teamMemberData.map((member: TeamMember, index: any) => (
+    <TeamMemberCard
+      key={index} // Ensure to provide a unique key for each component in the array
+      name={member.name}
+      headshot={member.headshot}
+      college={member.college}
+      role={member.role}
+      curPosition={member.curPosition}
+      linkedin={member.linkedin}
+    />
+  ))}
+</div>
+        </div>
+  
     </div>
   );
 }
