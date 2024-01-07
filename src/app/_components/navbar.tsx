@@ -90,7 +90,7 @@ function Navbar() {
           <div className="mt-2 text-center">
             {session && session.user && session.user.image ? (
               <div className="flex items-center justify-center gap-1 p-1">
-                <Link href={"/api/auth/signout"}>
+                <Link href={"/profile"}>
                   <Image
                     src={session.user.image}
                     width={38}
@@ -161,7 +161,7 @@ function Navbar() {
                 <div className="text-center">
                   {session && session.user && session.user.image ? (
                     <div className="gap-1 rounded-full border border-gray-500 bg-secondary p-[2px]">
-                      <Link href={"/api/auth/signout"}>
+                      <Link href={"/profile"}>
                         <Image
                           src={session.user.image}
                           width={38}
