@@ -88,6 +88,7 @@
   color: var(--background-site);
   display: flex;
   align-items: center;
+  color: white;
   justify-content: center;
   cursor: pointer;
   width: 4rem;
@@ -130,6 +131,7 @@
   align-items: center;
   margin-right: 0.75rem;
   margin-left: 0.75rem;
+  
 }
 .embla__dot:after {
     background: var(--background-site, #fff); /* Fallback to white if --background-site is not defined */
@@ -137,13 +139,11 @@
     width: 100%;
     height: 0.3rem;
     content: '';
+    opacity: 0.3;
   }
 .embla__dot--selected:after {
-  background: linear-gradient(
-    45deg,
-    var(--brand-primary),
-    var(--brand-secondary)
-  );
+  background: var(--brand-primary, #fff);
+  opacity: 1;
 }
 
 .theme-light {
