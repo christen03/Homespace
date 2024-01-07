@@ -40,14 +40,14 @@ function ListingCard({
   }, [id]);
   return (
     <Link href={"/listing/" + id}>
-    <div className="flex w-full hover:scale-[1.02] border border-gray-300 duration-300 transition">
+    <div className="flex w-full hover:scale-[1.02] border border-gray-300 duration-300 transition rounded-[15px]">
       <div className="w-1/2 overflow-hidden rounded-l-2xl">
-        <div
-          id={`image-${id}`}
-          className="aspect-w-1 aspect-h-1 relative w-full h-full"
-        >
-          <CardSlider imgSrcs={imgSrcs}/>
-        </div>
+      <div
+  id={`image-${id}`}
+  className="aspect-w-1 aspect-h-1 relative w-full h-full rounded-[20px] overflow-hidden"
+>
+  <CardSlider imgSrcs={imgSrcs}/>
+</div>
       </div>
       <div className="w-1/2 flex flex-col bg-white rounded-r-2xl">
         <div className="flex-1 p-4">
@@ -62,7 +62,7 @@ function ListingCard({
             {addressString}
           </div>
         </div>
-        <div className="flex-1 flex flex-row justify-between items-center p-4">
+        <div className="flex-1 flex flex-row justify-between items-center p-3">
   <span className="text-lg text-black0">${price}/month</span>
   <FaHeart className="text-lg text-gray-400 hover:text-red-500 cursor-pointer" />
 </div>
