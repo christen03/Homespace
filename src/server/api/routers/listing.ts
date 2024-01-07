@@ -10,24 +10,41 @@ export const listingRouter = createTRPCRouter({
   getMany: publicProcedure.query(({ ctx }) => {
     return ctx.db.listing.findMany();
   }),
-  
+  getOne: publicProcedure
+    .input(
+      z.object({
+        id: z.string(), // Assuming the ID is a string, change it according to your schema
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      return ctx.db.listing.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
   filterByLocation: protectedProcedure
-  .input(z.object({
-    longitude: z.number(),
-    latitude: z.number(),
-  }))
-  .query(({ ctx, input }) => {
-    const METERS_PER_MILE = 1609.34;
-    return ctx.db.listing.findRaw({
-      filter: {
-        location: {
-          $geoWithin: {
-            $centerSphere: [[input.longitude, input.latitude], 20 / METERS_PER_MILE],
-          }
-        }
-      }
-    });
-  }),
+    .input(
+      z.object({
+        longitude: z.number(),
+        latitude: z.number(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      const METERS_PER_MILE = 1609.34;
+      return ctx.db.listing.findRaw({
+        filter: {
+          location: {
+            $geoWithin: {
+              $centerSphere: [
+                [input.longitude, input.latitude],
+                20 / METERS_PER_MILE,
+              ],
+            },
+          },
+        },
+      });
+    }),
   createOne: protectedProcedure
     .input(
       z.object({
@@ -52,9 +69,9 @@ export const listingRouter = createTRPCRouter({
           bedrooms: input.bedrooms,
           bathrooms: input.bathrooms,
           occupants: input.occupants,
-          location:{
+          location: {
             type: "Point",
-            coordinates: [input.longitude, input.latitude]
+            coordinates: [input.longitude, input.latitude],
           },
           addressString: input.addressString,
           imageSrcs: input.imageSrcs,
