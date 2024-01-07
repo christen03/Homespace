@@ -52,8 +52,11 @@ model User {
     emailVerified DateTime? @map("email_verified")
     phoneNumber   String?
     biography     String?
-    location      String?
     image         String?
+    contract      Bytes?
+    verified      Boolean?
+    socials       String[]
+    liked         String[]
     accounts      Account[]
     sessions      Session[]
     listings      Listing[]

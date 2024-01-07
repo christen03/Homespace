@@ -5,6 +5,7 @@ import Image from "next/image";
 import "./navbar.css";
 import { useSession } from "next-auth/react";
 import def from "../../../public/default.jpg";
+import { api } from "~/trpc/react";
 import { FaM, FaMarsAndVenus } from "react-icons/fa6";
 import logo from "../../../public/logo.png";
 import { useState } from "react";
@@ -15,7 +16,8 @@ function Navbar() {
   // Assuming getServerAuthSession returns an object with user information
   const { data: session, status, update } = useSession();
   const [showMenu, setShowMenu] = useState(false);
-  const router = useRouter();
+  const getUserData = api.users.getCurrentUser.useQuery();
+  const uData = getUserData.data;
 
   function toggleMenu() {
     if (!showMenu) {
@@ -24,6 +26,12 @@ function Navbar() {
       setShowMenu(false);
     }
   }
+
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
 
   return (
     <nav className="navbar">
@@ -90,7 +98,7 @@ function Navbar() {
           <div className="mt-2 text-center">
             {session && session.user && session.user.image ? (
               <div className="flex items-center justify-center gap-1 p-1">
-                <Link href={"/profile"}>
+                <Link href={"/settings"}>
                   <Image
                     src={session.user.image}
                     width={38}
@@ -156,33 +164,67 @@ function Navbar() {
                 Add Your Apartment
               </Link>
             </div>
-            <div className="flex items-center justify-center">
-              <div>
-                <div className="text-center">
-                  {session && session.user && session.user.image ? (
-                    <div className="gap-1 rounded-full border border-gray-500 bg-secondary p-[2px]">
-                      <Link href={"/profile"}>
-                        <Image
-                          src={session.user.image}
-                          width={38}
-                          height={38}
-                          alt="Profile Image"
-                          className="rounded-full" // Apply Tailwind's rounded-full class
-                        />
-                      </Link>
+            <div className="relative flex items-center justify-center">
+              {session && session.user && session.user.image ? (
+                <div
+                  onClick={toggleDropdown}
+                  className="cursor-pointer gap-1 rounded-full border border-gray-500 bg-secondary p-[2px]"
+                >
+                  <div className="flex items-center">
+                    {/* Three lines next to the profile image */}
+                    <div className="ml-3 mr-2">
+                      <div className="h-0.5 w-4 rounded-full bg-white"></div>
+                      <div className="my-0.5 h-0.5 w-4 rounded-full bg-white"></div>
+                      <div className="h-0.5 w-4 rounded-full bg-white"></div>
                     </div>
-                  ) : (
-                    <div className="flex items-center justify-center rounded-[100px] bg-secondary px-6 py-3 hover:bg-secondaryDark">
+                    <Image
+                      src={session.user.image}
+                      width={38}
+                      height={38}
+                      alt="Profile Image"
+                      className="rounded-full"
+                    />
+                  </div>
+                  {/* Dropdown Menu */}
+                  {isDropdownVisible && (
+                    <div className="absolute right-0 top-full mt-2 w-40 rounded-md bg-white shadow-lg">
                       <Link
-                        href={"/api/auth/signin"}
-                        className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+                        href={"/user/" + uData?.id}
+                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
                       >
-                        Sign in
+                        Profile
+                      </Link>
+                      <Link
+                        href="/settings"
+                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Account Settings
+                      </Link>
+                      <Link
+                        href="/liked-listings"
+                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Liked Listings
+                      </Link>
+                      <Link
+                        href="/api/auth/signout"
+                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Sign Out
                       </Link>
                     </div>
                   )}
                 </div>
-              </div>
+              ) : (
+                <div className="flex items-center justify-center rounded-[100px] bg-secondary px-6 py-3 hover:bg-secondaryDark">
+                  <Link
+                    href={"/api/auth/signin"}
+                    className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+                  >
+                    Sign in
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
