@@ -5,6 +5,7 @@ import ListingCard from "./listing-card";
 
 
 
+
 export default function DefaultListingsInfo() {
   const getManyQuery = api.listing.getMany.useQuery();
   const listings=getManyQuery.data
