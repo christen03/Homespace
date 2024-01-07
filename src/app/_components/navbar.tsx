@@ -76,8 +76,8 @@ function Navbar() {
               About
             </Link>
           </div>
-          {/* <div className="px-16">
-            <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 py-3">
+          <div className="px-16">
+            <div className="flex items-center justify-center gap-1 rounded-[100px] border-2 border-secondary bg-colorbng py-3 hover:bg-secondary">
               <Link
                 href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
@@ -85,9 +85,9 @@ function Navbar() {
                 Add Your Apartment
               </Link>
             </div>
-          </div> */}
+          </div>
 
-          {/* <div className="mt-2 text-center">
+          <div className="mt-2 text-center">
             {session && session.user && session.user.image ? (
               <div className="flex items-center justify-center gap-1 p-1">
                 <Link href={"/api/auth/signout"}>
@@ -101,7 +101,7 @@ function Navbar() {
                 </Link>
               </div>
             ) : (
-              <div className="bg-secondary hover:bg-secondaryDark flex items-center justify-center rounded-[100px] px-6 py-3">
+              <div className="flex items-center justify-center rounded-[100px] bg-secondary px-6 py-3 hover:bg-secondaryDark">
                 <Link
                   href={"/api/auth/signin"}
                   className="text-center text-base font-semibold leading-snug tracking-tight text-black"
@@ -110,7 +110,7 @@ function Navbar() {
                 </Link>
               </div>
             )}
-          </div> */}
+          </div>
         </div>
 
         <div className="inline-flex hidden w-full items-center justify-center gap-[33px] bg-colorbng px-12 py-4 sm:flex">
@@ -134,25 +134,33 @@ function Navbar() {
           <div className="flex shrink grow  basis-0 items-start justify-end gap-6">
             <div className="flex items-center justify-center gap-1 px-4 py-3">
               <Link
+                href="/dashboard"
+                className="text-center text-base font-semibold leading-snug tracking-tight text-white"
+              >
+                Dashboard
+              </Link>
+            </div>
+            <div className="flex items-center justify-center gap-1 px-4 py-3">
+              <Link
                 href="/about"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
               >
                 About
               </Link>
             </div>
-            {/* <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 px-6 py-3">
+            <div className="flex items-center justify-center gap-1 rounded-[100px] border-2 border-secondary bg-colorbng px-6 py-3 hover:bg-secondary">
               <Link
                 href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
               >
                 Add Your Apartment
               </Link>
-            </div> */}
-            {/* <div className="flex items-center justify-center">
+            </div>
+            <div className="flex items-center justify-center">
               <div>
                 <div className="text-center">
                   {session && session.user && session.user.image ? (
-                    <div className="bg-secondary gap-1 rounded-full border border-gray-500 p-[2px]">
+                    <div className="gap-1 rounded-full border border-gray-500 bg-secondary p-[2px]">
                       <Link href={"/api/auth/signout"}>
                         <Image
                           src={session.user.image}
@@ -164,7 +172,7 @@ function Navbar() {
                       </Link>
                     </div>
                   ) : (
-                    <div className="bg-secondary hover:bg-secondaryDark flex items-center justify-center rounded-[100px] px-6 py-3">
+                    <div className="flex items-center justify-center rounded-[100px] bg-secondary px-6 py-3 hover:bg-secondaryDark">
                       <Link
                         href={"/api/auth/signin"}
                         className="text-center text-base font-semibold leading-snug tracking-tight text-black"
@@ -175,7 +183,7 @@ function Navbar() {
                   )}
                 </div>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ export default function DefaultListingsInfo() {
     <main>
       <div className="ml-20 mr-20 mt-4 flex flex-col">
         <div className="align-center mt-2 w-full justify-center"></div>
-        <div className="mb-20 mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mb-20 mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {listings.map((listing) => (
             <ListingCard
               key={listing.id}
