@@ -76,6 +76,7 @@ export const listingRouter = createTRPCRouter({
           addressString: input.addressString,
           imageSrcs: input.imageSrcs,
           createdById: ctx.session.user.id,
+          createdAt: new Date()
         },
       });
     }),

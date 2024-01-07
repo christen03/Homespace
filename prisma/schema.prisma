@@ -64,7 +64,7 @@ model User {
     phoneNumber   String
     biography     String
     location      String
-    image         String?
+    image         String
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
