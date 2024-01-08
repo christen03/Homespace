@@ -1,8 +1,7 @@
 "use client";
-import { type Listing, type Session } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import DefaultListingsInfo from "../_components/DefaultListingsInfo";
 import SessionInfo from "../_components/session-info";
 import EnterAddress from "../_components/EnterAddress";

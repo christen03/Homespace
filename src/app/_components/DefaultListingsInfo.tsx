@@ -30,10 +30,12 @@ export default function DefaultListingsInfo() {
         price={listing.price}
         bathrooms={listing.bathrooms}
         bedrooms={listing.bedrooms}
-        occupants={listing.occupants}
+        sharedSpace={listing.sharedSpace}
         imgSrcs={listing.imageSrcs}
-        createdBy={listing.createdById}
         addressString={listing.addressString}
+        listingStart={listing.listingStart.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} 
+        listingEnd={listing.listingEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+        descriptionTags={listing.descriptionTags} 
      />
     ))}
   </div>

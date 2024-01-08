@@ -61,10 +61,10 @@ model User {
     name          String
     email         String   @unique
     emailVerified DateTime? @map("email_verified")
-    phoneNumber   String
-    biography     String
-    location      String
-    image         String
+    phoneNumber   String?
+    biography     String?
+    location      String?
+    image         String?
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
@@ -83,19 +83,41 @@ model VerificationToken {
     @@map("verificationtokens")
 }
 
+enum Tag {
+    PET_FRIENDLY
+    SMOKE_FRIENDLY
+    FREE_PARKING
+    FREE_WIFI
+    POOL
+}
+
+enum RoomType {
+  Single 
+  Double
+  Triple
+  Quad
+}
+
+
+
 model Listing {
     id             String @id @default(auto()) @map("_id") @db.ObjectId
     title          String
     price          Int
+    sharedSpace Boolean
     bedrooms       Int
     bathrooms      Int
-    occupants      Int
+    occupants      Json?
+    roomType        RoomType?
     location        Json 
+    descriptionTags     Tag[]
     addressString      String
     imageSrcs       String[]
     createdById     String
     createdBy       User @relation(fields: [createdById], references: [id])
-    createdAt       DateTime @default(now())
+    createdAt       DateTime 
+    listingStart    DateTime
+    listingEnd      DateTime
     @@map("listings")
 }
 

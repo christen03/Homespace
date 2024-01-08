@@ -26,11 +26,16 @@ export default function ImageForm() {
       price: listingStore.price,
       bedrooms: listingStore.bedrooms,
       bathrooms: listingStore.bathrooms,
+      sharedSpace: listingStore.sharedSpace,
       occupants: listingStore.occupants,
+      roomType: listingStore.roomType,
       longitude: listingStore.longitude,
       latitude: listingStore.latitude,
+      descriptionTags: listingStore.descriptionTags,
       addressString: listingStore.addressString,
-      imageSrcs: imageUrls
+      imageSrcs: imageUrls,
+      listingStart: listingStore.listingStart,
+      listingEnd: listingStore.listingEnd,
     });
   }
 
@@ -113,6 +118,15 @@ export default function ImageForm() {
             Next
           </button>
         </div>
+        <div className="flex gap-4 justify-end">
+                <button
+                    type="button"
+                    onClick={listingStore.onHandleBack}
+                    className="h-11 px-6 inline-block bg-blue-600 font-semibold text-white rounded-md"
+                >
+                    Back
+                </button>
+            </div>
         <div className="mt-4">
           <h3 className="mb-2 text-xl font-semibold">
             Listing Store Image Content:
