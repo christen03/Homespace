@@ -161,7 +161,13 @@ export default function InformationForm() {
           control={control}
           name="sharedSpace"
           render={({ field }) => (
-            <input type="checkbox" {...field} className="your-checkbox-class" />
+            <input
+              type="checkbox"
+              {...field}
+              checked={field.value}
+              value="sharedSpace"
+              className="your-checkbox-class"
+            />
           )}
         />
       </div>
