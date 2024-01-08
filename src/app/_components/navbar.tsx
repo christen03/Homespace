@@ -85,7 +85,7 @@ function Navbar() {
             </Link>
           </div>
           <div className="px-16">
-            <div className="flex items-center justify-center gap-1 rounded-[100px] border-2 border-secondary bg-colorbng py-3 hover:bg-secondary">
+            <div className="flex items-center justify-center gap-1 rounded-[100px] border-2 border-secondary bg-secondary py-3 hover:bg-secondary">
               <Link
                 href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
@@ -156,7 +156,7 @@ function Navbar() {
                 About
               </Link>
             </div>
-            <div className="flex items-center justify-center gap-1 rounded-[100px] border-2 border-secondary bg-colorbng px-6 py-3 hover:bg-secondary">
+            <div className="flex items-center justify-center gap-1 rounded-[100px] border-2 border-secondary bg-secondary px-6 py-2 hover:bg-secondary">
               <Link
                 href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
@@ -168,7 +168,7 @@ function Navbar() {
               {session && session.user && session.user.image ? (
                 <div
                   onClick={toggleDropdown}
-                  className="cursor-pointer gap-1 rounded-full border border-gray-500 bg-secondary p-[2px]"
+                  className="cursor-pointer gap-1 rounded-full border-2 border-secondary bg-colorbng p-[1px]"
                 >
                   <div className="flex items-center">
                     {/* Three lines next to the profile image */}
@@ -187,31 +187,33 @@ function Navbar() {
                   </div>
                   {/* Dropdown Menu */}
                   {isDropdownVisible && (
-                    <div className="absolute right-0 top-full mt-2 w-40 rounded-md bg-white shadow-lg">
+                    <div className="absolute right-0 top-full mt-2 w-[11rem] rounded-md bg-white shadow-lg">
                       <Link
                         href={"/user/" + uData?.id}
-                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                        className="text-md block px-4 py-2 text-left text-gray-700 hover:bg-gray-100"
                       >
                         Profile
                       </Link>
                       <Link
                         href="/settings"
-                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                        className="text-md block px-4 py-2 text-left text-gray-700 hover:bg-gray-100"
                       >
                         Account Settings
                       </Link>
                       <Link
                         href="/liked-listings"
-                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                        className="text-md block px-4 py-2 text-left text-gray-700 hover:bg-gray-100"
                       >
                         Liked Listings
                       </Link>
-                      <Link
-                        href="/api/auth/signout"
-                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        Sign Out
-                      </Link>
+                      <div className="px-2">
+                        <Link
+                          href="/api/auth/signout"
+                          className="text-md block border-t border-gray-300 px-2 py-2 text-left text-gray-700 hover:bg-gray-100"
+                        >
+                          Sign Out
+                        </Link>
+                      </div>
                     </div>
                   )}
                 </div>

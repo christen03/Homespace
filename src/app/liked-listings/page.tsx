@@ -51,7 +51,7 @@ export default function User({ params }: { params: { slug: string } }) {
         <div className="mt-8 flex flex-row">
         </div>
         <div className="mt-10 text-center text-2xl">{userData.biography!}</div>
-        <div className="mb-20 mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+        {/* <div className="mb-20 mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
           {userData.liked ? (
             userData.liked.map((listing) => (
               <ListingCard
@@ -70,7 +70,7 @@ export default function User({ params }: { params: { slug: string } }) {
           ) : (
             <></>
           )}
-        </div>
+        </div> */}
       </div>
       <div> </div>
     </div>

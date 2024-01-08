@@ -1,5 +1,9 @@
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "~/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
 
 export const userRouter = createTRPCRouter({
   getOne: publicProcedure
@@ -12,6 +16,9 @@ export const userRouter = createTRPCRouter({
       return ctx.db.user.findUnique({
         where: {
           id: input.id,
+        },
+        include: {
+          listings: true,
         },
       });
     }),

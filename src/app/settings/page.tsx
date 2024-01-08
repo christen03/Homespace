@@ -7,12 +7,12 @@ import Link from "next/link";
 
 export default function Page() {
   const getUserData = api.users.getCurrentUser.useQuery();
-  const userData = getUserData.data;
+  const userData = getUserData.data; // listings
   const [isEditMode, setIsEditMode] = useState(false);
 
   const nameRef = useRef<HTMLInputElement | null>(null);
   const phoneRef = useRef<HTMLInputElement | null>(null);
-  const bioRef = useRef<HTMLInputElement | null>(null);
+  const bioRef = useRef<HTMLTextAreaElement>(null);
   const linkedinRef = useRef<HTMLInputElement | null>(null);
   const instagramRef = useRef<HTMLInputElement | null>(null);
   const twitterRef = useRef<HTMLInputElement | null>(null);
@@ -34,9 +34,8 @@ export default function Page() {
       instagramRef.current?.value,
       twitterRef.current?.value,
       facebookRef.current?.value,
-    ];
+    ].filter((social) => social !== undefined) as string[]; // Filter out undefined and assert as string[]
 
-    // Check if any field is empty
     if (!newName || !newPhone || !newBio) {
       alert("All fields must be filled out");
       return;
@@ -48,10 +47,16 @@ export default function Page() {
       biography: newBio,
       socials: newSocials,
     });
+
     console.log("data updated!");
   };
 
-  const renderLabeledInput = (label, ref, defaultValue, disabled) => (
+  const renderLabeledInput = (
+    label: string,
+    ref: React.RefObject<HTMLInputElement>,
+    defaultValue: string | undefined,
+    disabled: boolean,
+  ) => (
     <div className="flex items-center space-x-2">
       <label className="font-regular min-w-[100px] text-right">{label}:</label>
       <input
@@ -60,13 +65,18 @@ export default function Page() {
         }`}
         ref={ref}
         type="text"
-        defaultValue={defaultValue}
+        defaultValue={defaultValue ?? ""} // Fallback to empty string if defaultValue is undefined
         disabled={disabled}
       />
     </div>
   );
 
-  const renderLabeledTextarea = (label, ref, defaultValue, disabled) => (
+  const renderLabeledTextarea = (
+    label: string,
+    ref: React.RefObject<HTMLTextAreaElement>,
+    defaultValue: string | undefined,
+    disabled: boolean,
+  ) => (
     <div className="flex flex-col space-y-2">
       <label className="font-regular text-left">{label}:</label>
       <textarea
@@ -74,9 +84,9 @@ export default function Page() {
           disabled ? "bg-gray-100" : ""
         }`}
         ref={ref}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue ?? ""} // Fallback to empty string if defaultValue is undefined
         disabled={disabled}
-        rows={3} // Set initial row size; it will expand with content
+        rows={3}
       />
     </div>
   );
@@ -123,76 +133,87 @@ export default function Page() {
       <div className="text-center">
         {isEditMode ? (
           <div className="mt-4 space-y-4">
-            {renderLabeledInput("Name", nameRef, userData.name, false)}
-            {renderLabeledInput("Phone", phoneRef, userData.phoneNumber, false)}
+            {renderLabeledInput("Name", nameRef, userData.name ?? "", false)}
+            {renderLabeledInput(
+              "Phone",
+              phoneRef,
+              userData.phoneNumber ?? "",
+              false,
+            )}
             {renderLabeledInput(
               "LinkedIn",
               linkedinRef,
-              userData.socials[0],
+              userData.socials[0] ?? "",
               false,
             )}
             {renderLabeledInput(
               "Instagram",
               instagramRef,
-              userData.socials[1],
+              userData.socials[1] ?? "",
               false,
             )}
             {renderLabeledInput(
               "Twitter",
               twitterRef,
-              userData.socials[2],
+              userData.socials[2] ?? "",
               false,
             )}
             {renderLabeledInput(
               "Facebook",
               facebookRef,
-              userData.socials[3],
+              userData.socials[3] ?? "",
               false,
-            )}{" "}
+            )}
             {renderLabeledTextarea(
               "Biography",
               bioRef,
-              userData.biography,
+              userData.biography ?? "",
               false,
             )}
           </div>
         ) : (
           <div className="mt-4 space-y-4">
-            {renderLabeledInput("Name", nameRef, userData.name, true)}
-            {renderLabeledInput("Phone", phoneRef, userData.phoneNumber, true)}
+            {renderLabeledInput("Name", nameRef, userData.name ?? "", true)}
+            {renderLabeledInput(
+              "Phone",
+              phoneRef,
+              userData.phoneNumber ?? "",
+              true,
+            )}
             {renderLabeledInput(
               "LinkedIn",
               linkedinRef,
-              userData.socials[0],
+              userData.socials[0] ?? "",
               true,
             )}
             {renderLabeledInput(
               "Instagram",
               instagramRef,
-              userData.socials[1],
+              userData.socials[1] ?? "",
               true,
             )}
             {renderLabeledInput(
               "Twitter",
               twitterRef,
-              userData.socials[2],
+              userData.socials[2] ?? "",
               true,
             )}
             {renderLabeledInput(
               "Facebook",
               facebookRef,
-              userData.socials[3],
+              userData.socials[3] ?? "",
               true,
-            )}{" "}
+            )}
             {renderLabeledTextarea(
               "Biography",
               bioRef,
-              userData.biography,
+              userData.biography ?? "",
               true,
             )}
           </div>
         )}
       </div>
+
       <div className="ml-20 mr-20 mt-4 flex flex-col">
         <div className="align-center mt-2 w-full justify-center"></div>
         <div className="mb-20 mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
@@ -204,11 +225,21 @@ export default function Page() {
               price={listing.price}
               bathrooms={listing.bathrooms}
               bedrooms={listing.bedrooms}
-              occupants={listing.occupants}
+              sharedSpace={listing.sharedSpace}
               imgSrcs={listing.imageSrcs}
               addressString={listing.addressString}
-              createdBy={listing.createdById}
-            ></ListingCard>
+              listingStart={listing.listingStart.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+              listingEnd={listing.listingEnd.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+              descriptionTags={listing.descriptionTags}
+            />
           ))}
         </div>
       </div>
