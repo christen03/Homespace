@@ -79,7 +79,7 @@ export default function User({ params }: { params: { slug: string } }) {
           )}
         </div>
         <div className="mt-8 flex flex-row">
-          {userData.socials && userData.socials[1] ? (
+          {userData.socials[1] ? (
             <div className="ml-0">
               {" "}
               <a href={userData.socials[1]} target="_blank">
@@ -90,7 +90,7 @@ export default function User({ params }: { params: { slug: string } }) {
             <></>
           )}
 
-          {userData.socials && userData.socials[0] ? (
+          {userData.socials[0] ? (
             <div className="ml-12">
               <a href={userData.socials[0]} target="_blank">
                 <FaLinkedin className="text-5xl text-secondary" />
@@ -100,7 +100,7 @@ export default function User({ params }: { params: { slug: string } }) {
             <></>
           )}
 
-          {userData.socials && userData.socials[2] ? (
+          {userData.socials[2] ? (
             <div className="ml-12">
               <a href={userData.socials[2]} target="_blank">
                 <FaTwitter className="text-5xl text-secondary" />
@@ -110,7 +110,7 @@ export default function User({ params }: { params: { slug: string } }) {
             <></>
           )}
 
-          {userData.socials && userData.socials[3] ? (
+          {userData.socials[3] ? (
             <div className="ml-12">
               {" "}
               <a href={userData.socials[3]} target="_blank">
