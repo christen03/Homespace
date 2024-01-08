@@ -6,6 +6,7 @@ import {
   PrevButton,
   NextButton
 } from './CarouselArrowsAndButtons'
+import {type EmblaCarouselType} from "embla-carousel"
 import "./embla.css"
 
 type PropType = {

@@ -5,6 +5,7 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
+import { zodPersonSchema, zodPrismaTypeSchema, zodRoomTypeSchema } from "~/types";
 
 export const listingRouter = createTRPCRouter({
   getMany: publicProcedure.query(({ ctx }) => {
@@ -52,11 +53,16 @@ export const listingRouter = createTRPCRouter({
         price: z.number().min(1),
         bedrooms: z.number().min(1),
         bathrooms: z.number().min(1),
-        occupants: z.number(),
+        sharedSpace: z.boolean(),
+        occupants: z.array(zodPersonSchema).optional(),
+      roomType: zodRoomTypeSchema.optional(),
         longitude: z.number(),
         latitude: z.number(),
+        descriptionTags: z.array(zodPrismaTypeSchema),
         addressString: z.string().min(1),
         imageSrcs: z.array(z.string()).min(1),
+        listingStart: z.date(),
+        listingEnd: z.date(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -68,15 +74,20 @@ export const listingRouter = createTRPCRouter({
           price: input.price,
           bedrooms: input.bedrooms,
           bathrooms: input.bathrooms,
+          sharedSpace: input.sharedSpace,
           occupants: input.occupants,
+          roomType: input.roomType,
           location: {
             type: "Point",
             coordinates: [input.longitude, input.latitude],
           },
+          descriptionTags: input.descriptionTags,
           addressString: input.addressString,
           imageSrcs: input.imageSrcs,
           createdById: ctx.session.user.id,
-          createdAt: new Date()
+          createdAt: new Date(),
+          listingStart: input.listingStart,
+          listingEnd: input.listingEnd,
         },
       });
     }),

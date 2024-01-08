@@ -1,13 +1,12 @@
 "use client";
-import { type Listing, type Session } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import DefaultListingsInfo from "../_components/DefaultListingsInfo";
 import SessionInfo from "../_components/session-info";
 import EnterAddress from "../_components/EnterAddress";
 import { type Location } from "~/types";
-import FilteredListingsInfo from "../_components/FilteredListingsInfo";
+// import FilteredListingsInfo from "../_components/FilteredListingsInfo";
 import { FaBed, FaDollarSign } from "react-icons/fa";
 import { FaCalendarCheck, FaCalendarTimes } from "react-icons/fa";
 
@@ -75,11 +74,13 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="w-3/4">
-          {selected ? (
+          {/* {selected ? (
             <FilteredListingsInfo selected={selected} />
           ) : (
             <DefaultListingsInfo />
-          )}
+          )} */}
+
+          <DefaultListingsInfo />
         </div>
       </div>
     </main>
