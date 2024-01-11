@@ -133,5 +133,3 @@ function AdditionalInformationForm() {
     </div>
   );
 }
-
-export default AdditionalInformationForm;

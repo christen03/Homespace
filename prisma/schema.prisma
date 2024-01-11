@@ -56,13 +56,16 @@ model User {
     contract      Bytes?
     verified      Boolean?
     socials       String[]
-    liked         String[]
     accounts      Account[]
     sessions      Session[]
-    listings      Listing[]
+    createdListingIds String[]
+    listings      Listing[] @relation("listings") 
+    likedListingIds String[] @db.ObjectId
+    likedListings Listing[] @relation("likedListings", fields: [likedListingIds], references: [id])
     
     @@map("users")
 }
+
 
 model VerificationToken {
     id         String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -105,7 +108,9 @@ model Listing {
     addressString      String
     imageSrcs       String[]
     createdById     String
-    createdBy       User @relation(fields: [createdById], references: [id])
+    createdBy       User @relation("listings", fields: [createdById], references: [id])
+    likedByIds String[] @db.ObjectId
+    likedBy         User[] @relation("likedListings", fields: [likedByIds], references: [id])
     createdAt       DateTime 
     listingStart    DateTime
     listingEnd      DateTime

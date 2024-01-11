@@ -14,7 +14,7 @@ export const listingRouter = createTRPCRouter({
   getOne: publicProcedure
     .input(
       z.object({
-        id: z.string(), // Assuming the ID is a string, change it according to your schema
+        id: z.string(),
       }),
     )
     .query(async ({ ctx, input }) => {
@@ -22,6 +22,22 @@ export const listingRouter = createTRPCRouter({
         where: {
           id: input.id,
         },
+      });
+    }),
+    getOneWithUser: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      return ctx.db.listing.findUnique({
+        where: {
+          id: input.id,
+        },
+        include:{
+          createdBy: true,
+        }
       });
     }),
   filterByLocation: protectedProcedure
@@ -55,7 +71,7 @@ export const listingRouter = createTRPCRouter({
         bathrooms: z.number().min(1),
         sharedSpace: z.boolean(),
         occupants: z.array(zodPersonSchema).optional(),
-      roomType: zodRoomTypeSchema.optional(),
+        roomType: zodRoomTypeSchema.optional(),
         longitude: z.number(),
         latitude: z.number(),
         descriptionTags: z.array(zodPrismaTypeSchema),
@@ -91,4 +107,23 @@ export const listingRouter = createTRPCRouter({
         },
       });
     }),
+  deleteOne: protectedProcedure.input(
+    z.object({
+      id: z.string(),
+    }),
+  )
+    .mutation(async ({ ctx, input }) => {
+
+      return ctx.db.listing.delete({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
+  updateOne: protectedProcedure.input(
+    z.object({
+      
+    })
+  )
 });
+

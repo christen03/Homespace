@@ -32,6 +32,16 @@ export const userRouter = createTRPCRouter({
       },
     });
   }),
+  getCurrentUserLikedPosts: protectedProcedure.query(({ ctx }) => {
+    return ctx.db.user.findUnique({
+      where: {
+        id: ctx.session.user.id,
+      },
+      include:{
+        likedListings: true
+      }
+    });
+  }),
   updateCurrentUser: protectedProcedure
     .input(
       z.object({
