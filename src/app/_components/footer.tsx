@@ -21,7 +21,7 @@ function Footer() {
                 <FaCopyright className="mt-1" /> &nbsp; 2024 Homespace &bull;
               </div>
             </Link>
-            <Link href="/" className="flex items-center justify-center">
+            <Link href="/terms" className="flex items-center justify-center">
               <div className="font-regular flex flex-row text-md leading-normal text-gray-900">
                 &nbsp; Terms
               </div>
