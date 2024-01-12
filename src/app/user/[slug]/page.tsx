@@ -9,6 +9,7 @@ import {
   FaLinkedin,
   FaTwitter,
   FaFacebookSquare,
+  FaCopy,
 } from "react-icons/fa";
 import Link from "next/link";
 
@@ -37,6 +38,18 @@ export default function User({ params }: { params: { slug: string } }) {
     }
   };
 
+  const copyToClipboard = () => {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        // You can add some alert or notification to show it was successful
+        console.log("URL copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -63,8 +76,12 @@ export default function User({ params }: { params: { slug: string } }) {
           ></img>
         </div>
         <div className="mt-8">
-          <div className="text-left">
+          <div className="flex items-center text-left">
             <div className="text-5xl font-bold">{userData.name!}</div>
+            <FaCopy
+              className="ml-4 cursor-pointer text-3xl"
+              onClick={copyToClipboard}
+            />
           </div>
         </div>
         <div className="mt-8">
