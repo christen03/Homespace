@@ -54,6 +54,7 @@ model User {
     biography     String?
     image         String?
     contract      Bytes?
+    username      String?  @unique
     verified      Boolean?
     socials       String[]
     liked         String[]
