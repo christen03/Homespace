@@ -104,16 +104,23 @@ function Navbar() {
           </div>
 
           <div className="mt-2 text-center">
-            {session && session.user && session.user.image ? (
+            {session && session.user ? (
               <div className="flex items-center justify-center gap-1 p-1">
                 <Link href={"/settings"}>
-                  <Image
+                  {session.user.image ?  (<Image
                     src={session.user.image}
                     width={38}
                     height={38}
                     alt="Profile Image"
                     className="rounded-full rounded-full border border-gray-200 p-1" // Apply Tailwind's rounded-full class
-                  />
+                  /> ) : ( <Image
+                    src={def}
+                    width={38}
+                    height={38}
+                    alt="Profile Image"
+                    className="rounded-full rounded-full border border-gray-200 p-1" // Apply Tailwind's rounded-full class
+                  />) }
+                  
                 </Link>
               </div>
             ) : (

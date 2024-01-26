@@ -42,6 +42,10 @@ const customAdapter: Adapter = (db) => {
       // Extract username from email
       const username = data.email?.split("@")[0];
 
+      if(!data.name){
+        data.name = username
+      }
+
       // Add username to user data
       data.username = username;
 
@@ -99,7 +103,7 @@ export const authOptions: NextAuthOptions = {
           body: JSON.stringify({
             personalizations: [{ to: [{ email }] }],
             from: { email: "spacelikehome.contact@gmail.com" }, 
-            subject: "Sign in to Your Page",
+            subject: "Sign in to Homespace!",
             content: [
               {
                 type: "text/plain",
