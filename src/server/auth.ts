@@ -32,6 +32,25 @@ declare module "next-auth" {
   // }
 }
 
+type Adapter = typeof PrismaAdapter;
+
+// Custom adapter with username generation
+const customAdapter: Adapter = (db) => {
+  return {
+    ...PrismaAdapter(db),
+    async createUser(data: any): Promise<any> {
+      // Extract username from email
+      const username = data.email?.split("@")[0];
+
+      // Add username to user data
+      data.username = username;
+
+      // Create user with updated data
+      return db.user.create({ data });
+    },
+  };
+};
+
 /**
  * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
  *
@@ -51,7 +70,7 @@ export const authOptions: NextAuthOptions = {
     //   if (url.startsWith(baseUrl + '/api/auth/signin')) {
     //     return baseUrl + '/dashboard';
     //   }
-      
+
     //   // If the user is signing out, redirect them to the base URL
     //   if (url.startsWith(baseUrl + '/api/auth/signout')) {
     //     return baseUrl;
@@ -61,7 +80,7 @@ export const authOptions: NextAuthOptions = {
     //   return url.startsWith(baseUrl) ? url : baseUrl;
     // },
   },
-  adapter: PrismaAdapter(db),
+  adapter: customAdapter(db),
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,

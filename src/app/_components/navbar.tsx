@@ -78,6 +78,14 @@ function Navbar() {
         >
           <div className="flex items-center justify-center gap-1 px-4 py-3">
             <Link
+              href="/dashboard"
+              className="text-center text-base font-semibold leading-snug tracking-tight text-white"
+            >
+              Dashboard
+            </Link>
+          </div>
+          <div className="flex items-center justify-center gap-1 px-4 py-3">
+            <Link
               href="/about"
               className="text-center text-base font-semibold leading-snug tracking-tight text-white"
             >
@@ -189,7 +197,7 @@ function Navbar() {
                   {isDropdownVisible && (
                     <div className="absolute right-0 top-full mt-2 w-[11rem] rounded-md bg-white shadow-lg">
                       <Link
-                        href={"/user/" + uData?.id}
+                        href={"/user/" + uData?.username}
                         className="text-md block px-4 py-2 text-left text-gray-700 hover:bg-gray-100"
                       >
                         Profile

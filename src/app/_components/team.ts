@@ -1,11 +1,10 @@
 import ajHeadshot from "../../../public/AkshatJainHeadshot.jpg";
 import christen from "../../../public/christen.jpg";
 import nhathan from "../../../public/nhathan.jpg";
-import shauna from "../../../public/shauna.jpg"
+import shauna from "../../../public/shauna.jpg";
 import def from "../../../public/default.jpg";
+import annie from "../../../public/annie.jpg";
 import { type StaticImageData } from "next/image";
-
-
 
 export interface TeamMember {
   name: string;
@@ -21,7 +20,7 @@ const teamMemberData: TeamMember[] = [
     name: "Nhathan Nguyen",
     headshot: nhathan,
     college: "B.S. Cognitive Science",
-    role: "Product Manager",
+    role: "Product Management",
     linkedin: "https://www.linkedin.com/in/nhathan-nguyen/",
     curPosition: "Business Intelligence Intern at Duco",
   },
@@ -45,12 +44,18 @@ const teamMemberData: TeamMember[] = [
     name: "Shauna Huang",
     headshot: shauna,
     college: "B.S. Cognitive Science",
-    role: "Public Relations & Marketing",
+    role: "Product Marketing",
     linkedin: "https://www.linkedin.com/in/shaunahuang/",
-    curPosition: "Incoming Marketing Manager at Atlassian"
-
-  }
+    curPosition: "Incoming Marketing Manager at Atlassian",
+  },
+  {
+    name: "Annie Wen",
+    headshot: annie,
+    college: "B.S. Cognitive Science",
+    role: "Product Design",
+    linkedin: "https://www.linkedin.com/in/annie-wen-xinge/",
+    curPosition: "",
+  },
 ];
 
 export default teamMemberData;
-
