@@ -103,6 +103,9 @@ model Listing {
     bathrooms      Int
     occupants      Json?
     roomType        RoomType?
+    preferredGender String?
+    minAge          Int?
+    maxAge          Int?
     location        Json 
     descriptionTags     Tag[]
     addressString      String

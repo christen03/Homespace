@@ -4,11 +4,17 @@ import { api } from "~/trpc/react";
 import ListingCard from "./listing-card";
 
 
+interface DefaultListingsInfoProps {
+  age: number
+}
 
-
-export default function DefaultListingsInfo() {
+export default function DefaultListingsInfo({ age }: DefaultListingsInfoProps) {
   const getManyQuery = api.listing.getMany.useQuery();
-  const listings=getManyQuery.data
+  const getAgeQuery = api.listing.filterByAge.useQuery({age: age}, {
+    skip: !age,
+  });
+ 
+  const listings = age ? getAgeQuery.data : getManyQuery.data;
 
   if (!listings) {
     return (
@@ -32,6 +38,8 @@ export default function DefaultListingsInfo() {
         bedrooms={listing.bedrooms}
         sharedSpace={listing.sharedSpace}
         imgSrcs={listing.imageSrcs}
+        minAge={listing.minAge}
+        maxAge={listing.maxAge}
         addressString={listing.addressString}
         listingStart={listing.listingStart.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} 
         listingEnd={listing.listingEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}

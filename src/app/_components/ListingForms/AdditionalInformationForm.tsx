@@ -5,7 +5,7 @@ import {Tag as PrismaTag} from "@prisma/client";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function AdditionalInformationForm() {
+export default function AdditionalInformationForm() {
   const [selectedTags, setSelectedTags] = useState<PrismaTag[]>([]);
   const [startDate, setStartDate] = useState<Date|null>(null);
   const [endDate, setEndDate] = useState<Date|null>(null);

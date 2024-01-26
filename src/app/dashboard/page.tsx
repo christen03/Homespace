@@ -23,10 +23,29 @@ const CustomButton: React.FC<CustomButtonProps> = ({ children }) => {
 };
 
 const Dashboard = () => {
+  const [age, setAge]=useState<number | null>(null);
   const [selected, setSelected] = useState<Location | null>(null);
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    // Do something with age here if needed
+  };
 
   return (
     <main>
+        <div className="ml-16 mr-16 mt-12">
+        <form onSubmit={handleSubmit}>
+          <label>
+            Age:
+            <input
+              type="number"
+              value={age || ''}
+              onChange={(e) => setAge(Number(e.target.value))}
+            />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
       <div className="flex w-full flex-row">
         <div className="w-1/4 bg-white border-r">
           {/* <EnterAddress setSelected={setSelected} /> */}
@@ -80,7 +99,7 @@ const Dashboard = () => {
             <DefaultListingsInfo />
           )} */}
 
-          <DefaultListingsInfo />
+          <DefaultListingsInfo age={age}/>
         </div>
       </div>
     </main>

@@ -11,6 +11,9 @@ type InfoFormValues = {
   sharedSpace: boolean;
   people: Person[];
   roomType: RoomType | undefined;
+  preferredGender: Gender | undefined;
+  minAge: number | undefined;
+  maxAge: number | undefined;
 };
 
 export default function InformationForm() {
@@ -31,6 +34,9 @@ export default function InformationForm() {
       sharedSpace: false,
       roomType: undefined,
       people: [],
+      preferredGender: undefined,
+      minAge: undefined,
+      maxAge: undefined,
     },
   });
 
@@ -88,6 +94,28 @@ export default function InformationForm() {
     listingStore.setBedrooms(data.bedrooms);
     listingStore.setOccupants(updatedPeople);
     listingStore.setSharedSpace(data.sharedSpace);
+    listingStore.setMaxAge(data.maxAge);
+    listingStore.setPreferredGender(data.preferredGender);
+
+    let minAgeAsNumber: number | undefined = undefined;
+    if (typeof data.minAge === "string") {
+      minAgeAsNumber = parseInt(data.minAge, 10);
+    } else{
+      minAgeAsNumber = data.minAge;
+    }
+    if (minAgeAsNumber && !isNaN(minAgeAsNumber)) {
+      listingStore.setMinAge(minAgeAsNumber);
+    }
+
+    let maxAgeAsNumber: number | undefined = undefined;
+    if (typeof data.maxAge === "string") {
+      maxAgeAsNumber = parseInt(data.maxAge, 10);
+    } else{
+      maxAgeAsNumber = data.maxAge;
+    }
+    if (maxAgeAsNumber && !isNaN(maxAgeAsNumber)) {
+      listingStore.setMaxAge(maxAgeAsNumber);
+    }
 
     let priceAsNumber: number | undefined = undefined;
     if (typeof data.price === "string") {
@@ -99,6 +127,8 @@ export default function InformationForm() {
       listingStore.setPrice(priceAsNumber);
       listingStore.onHandleNext();
     }
+
+    
   };
 
   return (
@@ -156,6 +186,51 @@ export default function InformationForm() {
         />
       </div>
       <div className="flex flex-col gap-1">
+      <label htmlFor="preferredGender">Preferred Gender:</label>
+      <Controller
+        control={control}
+        name="preferredGender"
+        render={({ field }) => (
+          <select {...field} className="your-select-class">
+            <option value="">No preference</option>
+            <option value={Gender.MALE}>Male</option>
+            <option value={Gender.FEMALE}>Female</option>
+            <option value={Gender.OTHER}>Other</option>
+          </select>
+        )}
+      />
+    </div>
+    <div className="flex flex-col gap-1">
+      <label htmlFor="minAge">Minimum Age:</label>
+      <Controller
+        control={control}
+        name="minAge"
+        render={({ field }) => (
+          <input
+            type="number"
+            {...field}
+            className="your-input-class"
+            placeholder="Enter minimum age"
+          />
+        )}
+      />
+    </div>
+    <div className="flex flex-col gap-1">
+      <label htmlFor="maxAge">Maximum Age:</label>
+      <Controller
+        control={control}
+        name="maxAge"
+        render={({ field }) => (
+          <input
+            type="number"
+            {...field}
+            className="your-input-class"
+            placeholder="Enter maximum age"
+          />
+        )}
+      />
+    </div>
+      <div className="flex flex-col gap-1">
         <label htmlFor="sharedSpace">Will this be a shared space?</label>
         <Controller
           control={control}
@@ -171,11 +246,12 @@ export default function InformationForm() {
           )}
         />
       </div>
-      <div className="flex flex-col gap-1">
-        <p>What type of room will you be subleasing?</p>
-      </div>
+     
       {sharedSpace && (
         <div>
+           <div className="flex flex-col gap-1">
+        <p>What type of room will you be subleasing?</p>
+      </div>
              <div style={{ marginBottom: "10px" }}>
       {roomTypes.map((roomType) => (
         <button

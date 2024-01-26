@@ -65,17 +65,39 @@ export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET
-    })
-    /**
-     * ...add more providers here.
-     *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
-     *
-     * @see https://next-auth.js.org/providers/github
-     */
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+    }),
+    {
+      id: 'sendgrid',
+      type: 'email',
+      async sendVerificationRequest({ identifier: email, url }) {
+        const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            personalizations: [{ to: [{ email }] }],
+            from: { email: "spacelikehome.contact@gmail.com" }, 
+            subject: "Sign in to Your Page",
+            content: [
+              {
+                type: "text/plain",
+                value: `Please click here to authenticate - ${url}`,
+              },
+            ],
+          }),
+        });
+        if (!response.ok) {
+          const errorBody = await response.json();
+          throw new Error(JSON.stringify(errorBody.errors));
+        }
+        if(response.ok) {
+          console.log("response ok")
+        }
+      },
+    },
   ],
 };
 

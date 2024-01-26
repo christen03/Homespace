@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import {Gender, type RoomType, type Person, type Tag} from "~/types";
+import {type Gender, type RoomType, type Person, type Tag} from "~/types";
 
 
 interface ListingState {
@@ -12,6 +12,9 @@ interface ListingState {
   bathrooms: number;
   occupants?: Person[]; 
   roomType?: RoomType; 
+  preferredGender? : Gender;
+  minAge?: number;  
+  maxAge?: number;  
   latitude: number;
   longitude: number;
   descriptionTags: Tag[];
@@ -26,6 +29,9 @@ interface ListingState {
   setSharedSpace: (sharedSpace: boolean) => void;
   setOccupants: (occupants?: Person[]) => void; 
   setRoomType: (roomType?: RoomType) => void; 
+  setPreferredGender: (preferredGender?: Gender) => void;
+  setMinAge: (minAge?: number) => void;
+  setMaxAge: (maxAge?: number) => void;
   setLatitude: (latitude: number) => void;
   setLongitude: (longitude: number) => void;
   setDescriptionTags: (descriptionTags: Tag[]) => void;
@@ -49,7 +55,10 @@ export const useListingStore = create<ListingState>((set) => ({
   bedrooms: 0,
   bathrooms: 0,
   occupants: undefined, // Default to undefined since it's optional
-  roomType: undefined, // Default to undefined since it's optional
+  roomType: undefined,
+  preferredGender: undefined,
+  minAge: undefined,
+  maxAge: undefined,
   latitude: 0,
   longitude: 0,
   descriptionTags: [],
@@ -64,6 +73,9 @@ export const useListingStore = create<ListingState>((set) => ({
   setSharedSpace: (sharedSpace: boolean) => set({ sharedSpace }),
   setOccupants: (occupants?: Person[]) => set({ occupants }),
   setRoomType: (roomType?: RoomType) => set({ roomType }),
+  setPreferredGender: (preferredGender?: Gender) => set({ preferredGender }),
+  setMinAge: (minAge?: number) => set({ minAge }),
+  setMaxAge: (maxAge?: number) => set({ maxAge }),
   setLatitude: (latitude: number) => set({ latitude }),
   setLongitude: (longitude: number) => set({ longitude }),
   setDescriptionTags: (descriptionTags: Tag[]) => set({ descriptionTags }),

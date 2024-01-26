@@ -15,7 +15,7 @@ export default function Launch() {
     <div className="bg-colorbng">
       <div className="bg-colorbng">
         <div className="pt-20">
-          <div className="text-center text-white">
+          <div className="text-center text-black">
             <h1 className="text-3xl font-medium sm:text-5xl">
               <span className="font-medium leading-normal text-accent">
                 Homespace
@@ -29,7 +29,7 @@ export default function Launch() {
         {" "}
         <div className="animate-fade-in-down w-full rounded-lg bg-colorbng p-8">
           <div className="text-center">
-            <h2 className="font-regular mb-4 text-3xl text-white">
+            <h2 className="font-regular mb-4 text-3xl text-black">
               We make subletting easier for students.{" "}
             </h2>
           </div>
@@ -44,7 +44,7 @@ export default function Launch() {
                 <h2 className="mb-4 mt-8 text-3xl font-bold text-accent">
                   We&apos;re cooking
                 </h2>
-                <p className="font-regular mb-4 ml-8 mr-8 text-xl text-gray-200">
+                <p className="font-regular mb-4 ml-8 mr-8 text-xl text-black">
                   Join our wait list to stay updated!
                 </p>
               </div>
@@ -56,14 +56,14 @@ export default function Launch() {
       <div className="mt-20 sm:px-20">
         <div className="mx-10 mt-8 flex flex-col text-center rounded-3xl px-6 py-6 sm:px-16 sm:py-12">
 
-            <h1 className="text-xl font-medium text-white sm:text-3xl">
+            <h1 className="text-xl font-medium text-black sm:text-3xl">
               List & Find with{" "}
-              <span className="font-bold leading-normal text-white">
+              <span className="font-bold leading-normal text-black">
                 Homespace
               </span>
             </h1>
             <div className="min mt-4 flex flex-col">
-              <div className="w-full text-white">
+              <div className="w-full text-black">
                 <div>
                   <p className="mt-4 text-lg sm:text-xl">
                     We are a platform that helps students list their apartments
@@ -89,7 +89,7 @@ export default function Launch() {
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8">
           <div className="flex flex-col items-center justify-center text-center">
             <HiOutlineInformationCircle className="text-6xl text-secondary sm:text-8xl" />
-            <h2 className="mt-4 text-xl font-medium text-white sm:text-2xl">
+            <h2 className="mt-4 text-xl font-medium text-black sm:text-2xl">
               Comprehensive Information
             </h2>
             <p className="font-regular text-lg text-gray-300 sm:text-xl">
@@ -98,7 +98,7 @@ export default function Launch() {
           </div>
           <div className="flex flex-col items-center justify-center text-center">
             <TbHomeCheck className="text-6xl text-secondary sm:text-8xl" />
-            <h2 className="mt-4 text-xl font-medium text-white sm:text-2xl">
+            <h2 className="mt-4 text-xl font-medium text-black sm:text-2xl">
               <i>Real</i> &nbsp;Listings
             </h2>
             <p className="font-regular text-lg text-gray-300 sm:text-xl">
@@ -107,7 +107,7 @@ export default function Launch() {
           </div>
           <div className="flex flex-col items-center justify-center text-center">
             <FaArrowsToCircle className="text-6xl text-secondary sm:text-8xl" />
-            <h2 className="mt-4 text-xl font-medium text-white sm:text-2xl">
+            <h2 className="mt-4 text-xl font-medium text-black sm:text-2xl">
               All in One Place
             </h2>
             <p className="font-regular text-lg text-gray-300 sm:text-xl">
@@ -138,14 +138,14 @@ export default function Launch() {
 //   }
 
 //   return (
-//     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+//     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-black">
 //       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
 //         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
 //           Welcome to <span className="text-[hsl(280,100%,70%)]">Homespace</span>
 //         </h1>
 //         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
 //           <Link
-//             className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
+//             className="flex max-w-xs flex-col gap-4 rounded-xl bg-black/10 p-4 hover:bg-black/20"
 //             href="https://create.t3.gg/en/usage/first-steps"
 //             target="_blank"
 //           >
@@ -156,7 +156,7 @@ export default function Launch() {
 //             </div>
 //           </Link>
 //           <Link
-//             className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
+//             className="flex max-w-xs flex-col gap-4 rounded-xl bg-black/10 p-4 hover:bg-black/20"
 //             href="https://create.t3.gg/en/introduction"
 //             target="_blank"
 //           >
@@ -168,20 +168,20 @@ export default function Launch() {
 //           </Link>
 //         </div>
 //         <div className="flex flex-col items-center gap-2">
-//           <p className="text-2xl text-white">
+//           <p className="text-2xl text-black">
 //             {hello ? hello.greeting : "Loading tRPC query..."}
 //           </p>
-//           <p className="text-2xl text-white">
+//           <p className="text-2xl text-black">
 //             {hello2 ? hello2 : "Loading tRPC query..."}
 //           </p>
 
 //           <div className="flex flex-col items-center justify-center gap-4">
-//             {/* <p className="text-center text-2xl text-white">
+//             {/* <p className="text-center text-2xl text-black">
 //               {session && <span>Logged in as {session.user?.name}</span>}
 //             </p> */}
 //             <Link
 //               href={session ? "/api/auth/signout" : "/api/auth/signin"}
-//               className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+//               className="rounded-full bg-black/10 px-10 py-3 font-semibold no-underline transition hover:bg-black/20"
 //             >
 //               {session ? "Sign out" : "Sign in"}
 //             </Link>

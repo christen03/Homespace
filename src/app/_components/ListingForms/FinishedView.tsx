@@ -30,6 +30,15 @@ return (
         <p><strong>Description:</strong> {person.description}</p>
       </div>
     ))}
+      {listingStore.preferredGender && (
+        <p>Preferred Gender: {listingStore.preferredGender}</p>
+      )}
+      {listingStore.minAge && (
+        <p>Minimum Age: {listingStore.minAge}</p>
+      )}
+      {listingStore.maxAge && (
+        <p>Maximum Age: {listingStore.maxAge}</p>
+      )}
   </div>
 )}
 {listingStore.roomType && (

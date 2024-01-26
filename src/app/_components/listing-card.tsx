@@ -21,6 +21,8 @@ interface ListingCardProps {
   listingStart: string;
   listingEnd: string;
   descriptionTags: Tag[];
+  minAge?: number 
+  maxAge?: number 
 }
 
 function ListingCard({
@@ -35,6 +37,8 @@ function ListingCard({
   listingStart,
   listingEnd,
   descriptionTags,
+  minAge,
+  maxAge
 }: ListingCardProps) {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [liked, setLiked] = useState(false);
@@ -96,6 +100,8 @@ function ListingCard({
               {sharedSpace ? "Shared Space" : "Personal Space"} &bull;{" "}
               {bedrooms} Bed &bull; {bathrooms} Bath
             </div>
+            {minAge && <div className="mt-2 text-sm text-gray-500">Min Age: {minAge}</div>}
+{maxAge && <div className="mt-2 text-sm text-gray-500">Max Age: {maxAge}</div>}
             <div className="mt-2 flex flex-wrap">
               {descriptionTags.map((tag) => (
                 <span

@@ -62,7 +62,49 @@ export const listingRouter = createTRPCRouter({
         },
       });
     }),
-  createOne: protectedProcedure
+    filterByGender: protectedProcedure
+    .input(
+      z.object({
+        gender: z.string(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      return ctx.db.listing.findMany({
+        where: {
+          OR: [
+            { preferredGender: input.gender },
+            { preferredGender: null },
+          ],
+        },
+      });
+    }),
+    filterByAge: protectedProcedure
+  .input(
+    z.object({
+      age: z.number(),
+    }),
+  )
+  .query(({ ctx, input }) => {
+    return ctx.db.listing.findMany({
+      where: {
+        AND: [
+          {
+            OR: [
+              { minAge: { lte: input.age } },
+              { minAge: null },
+            ],
+          },
+          {
+            OR: [
+              { maxAge: { gte: input.age } },
+              { maxAge: null },
+            ],
+          },
+        ],
+      },
+    });
+  }),
+      createOne: protectedProcedure
     .input(
       z.object({
         title: z.string().min(1),
@@ -72,6 +114,9 @@ export const listingRouter = createTRPCRouter({
         sharedSpace: z.boolean(),
         occupants: z.array(zodPersonSchema).optional(),
         roomType: zodRoomTypeSchema.optional(),
+        preferredGender: z.string().optional(),
+        minAge: z.number().optional(),  
+        maxAge: z.number().optional(),  
         longitude: z.number(),
         latitude: z.number(),
         descriptionTags: z.array(zodPrismaTypeSchema),
@@ -91,8 +136,11 @@ export const listingRouter = createTRPCRouter({
           bedrooms: input.bedrooms,
           bathrooms: input.bathrooms,
           sharedSpace: input.sharedSpace,
-          occupants: input.occupants,
+          occupants: input.occupants, 
           roomType: input.roomType,
+          preferredGender: input.preferredGender,
+          minAge: input.minAge,
+          maxAge: input.maxAge,
           location: {
             type: "Point",
             coordinates: [input.longitude, input.latitude],
