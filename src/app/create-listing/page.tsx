@@ -3,6 +3,7 @@ import { useForm, type SubmitHandler } from "react-hook-form"
 import { useListingStore } from "~/stores/listing"
 import TitleForm from "../_components/ListingForms/TitleForm"
 import InformationForm from "../_components/ListingForms/InformationForm"
+import AdditionalInformationForm from "../_components/ListingForms/AdditionalInformationForm"
 import AddressForm from "../_components/ListingForms/AddressForm"
 import ImageForm from "../_components/ListingForms/ImageForm";
 import FinishedView from "../_components/ListingForms/FinishedView"
@@ -22,12 +23,15 @@ function ActiveFormComponent() {
             return <InformationForm />
 
         case 3:
+            return <AdditionalInformationForm />
+
+        case 4:
             return <AddressForm />
         
-        case 4:
+        case 5:
             return <ImageForm />
 
-        case 5:
+        case 6:
             return <FinishedView />
     }
 }

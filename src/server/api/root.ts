@@ -1,4 +1,3 @@
-import { postRouter } from "~/server/api/routers/post";
 import { createTRPCRouter } from "~/server/api/trpc";
 import { testRouter } from "./routers/test";
 import { list } from "postcss";
@@ -14,7 +13,6 @@ import { sendEmailRouter } from "./routers/send-email";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
   test: testRouter,
   listing: listingRouter,
   image: imageRouter,
