@@ -11,6 +11,7 @@ export default function Page() {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const nameRef = useRef<HTMLInputElement | null>(null);
+  const usernameRef = useRef<HTMLInputElement | null>(null);
   const phoneRef = useRef<HTMLInputElement | null>(null);
   const bioRef = useRef<HTMLTextAreaElement>(null);
   const linkedinRef = useRef<HTMLInputElement | null>(null);
@@ -27,6 +28,7 @@ export default function Page() {
 
   const handleSaveNewData = () => {
     const newName = nameRef.current?.value;
+    const newUsername = usernameRef.current?.value;
     const newPhone = phoneRef.current?.value;
     const newBio = bioRef.current?.value;
     const newSocials = [
@@ -36,13 +38,9 @@ export default function Page() {
       facebookRef.current?.value,
     ].filter((social) => social !== undefined) as string[]; // Filter out undefined and assert as string[]
 
-    if (!newName || !newPhone || !newBio) {
-      alert("All fields must be filled out");
-      return;
-    }
-
     updateUserData.mutate({
       name: newName,
+      username: newUsername,
       phoneNumber: newPhone,
       biography: newBio,
       socials: newSocials,
@@ -113,6 +111,9 @@ export default function Page() {
         <div className="mt-8">
           <div className="text-left">
             <div className="text-4xl font-bold">Welcome, {userData.name!}!</div>
+            <div className="text-4xl font-bold">
+              Your username is @{userData.username}
+            </div>
           </div>
         </div>
         <div className="mt-8"></div>
@@ -134,6 +135,12 @@ export default function Page() {
         {isEditMode ? (
           <div className="mt-4 space-y-4">
             {renderLabeledInput("Name", nameRef, userData.name ?? "", false)}
+            {renderLabeledInput(
+              "Username",
+              usernameRef,
+              userData.username ?? "",
+              false,
+            )}
             {renderLabeledInput(
               "Phone",
               phoneRef,
@@ -174,6 +181,12 @@ export default function Page() {
         ) : (
           <div className="mt-4 space-y-4">
             {renderLabeledInput("Name", nameRef, userData.name ?? "", true)}
+            {renderLabeledInput(
+              "Username",
+              usernameRef,
+              userData.username ?? "",
+              true,
+            )}
             {renderLabeledInput(
               "Phone",
               phoneRef,

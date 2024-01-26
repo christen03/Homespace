@@ -9,13 +9,13 @@ export const userRouter = createTRPCRouter({
   getOne: publicProcedure
     .input(
       z.object({
-        id: z.string(), // Assuming the ID is a string, change it according to your schema
+        username: z.string(), // Assuming the ID is a string, change it according to your schema
       }),
     )
     .query(async ({ ctx, input }) => {
       return ctx.db.user.findUnique({
         where: {
-          id: input.id,
+          username: input.username,
         },
         include: {
           listings: true,
@@ -36,6 +36,7 @@ export const userRouter = createTRPCRouter({
     .input(
       z.object({
         name: z.string().optional(),
+        username: z.string().optional(),
         phoneNumber: z.string().optional(),
         biography: z.string().optional(),
         location: z.string().optional(),
@@ -43,10 +44,12 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const { name, phoneNumber, biography, location, socials } = input;
+      const { name, username, phoneNumber, biography, location, socials } =
+        input;
 
       const updatedUserData = {
         name,
+        username,
         phoneNumber,
         biography,
         location,
