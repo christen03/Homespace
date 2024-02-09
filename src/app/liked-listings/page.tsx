@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 
 export default function User({ params }: { params: { slug: string } }) {
-  const getUserData = api.users.getCurrentUser.useQuery();
+  const getUserData = api.users.getCurrentUserLikedPosts.useQuery();
   const userData = getUserData.data;
 
   if (getUserData.isLoading) {
@@ -51,28 +51,39 @@ export default function User({ params }: { params: { slug: string } }) {
         <div className="mt-8 flex flex-row">
         </div>
         <div className="mt-10 text-center text-2xl">{userData.biography!}</div>
-        {/* <div className="mb-20 mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
-          {userData.liked ? (
-            userData.liked.map((listing) => (
-              <ListingCard
-                key={listing.id}
-                id={listing.id}
-                title={listing.title}
-                price={listing.price}
-                bathrooms={listing.bathrooms}
-                bedrooms={listing.bedrooms}
-                occupants={listing.occupants}
-                imgSrcs={listing.imageSrcs}
-                addressString={listing.addressString}
-                createdBy={listing.createdById}
-              ></ListingCard>
-            ))
-          ) : (
-            <></>
-          )}
-        </div> */}
+        <div className="mb-20 mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+  {userData.likedListings?.length > 0 ? (
+    userData.likedListings.map((listing) => (
+      <ListingCard
+        key={listing.id}
+        id={listing.id}
+        title={listing.title}
+        price={listing.price}
+        bathrooms={listing.bathrooms}
+        bedrooms={listing.bedrooms}
+        sharedSpace={listing.sharedSpace}
+        imgSrcs={listing.imageSrcs}
+        addressString={listing.addressString}
+        listingStart={listing.listingStart.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+        listingEnd={listing.listingEnd.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+        descriptionTags={listing.descriptionTags}
+      />
+    ))
+  ) : (
+    <div className="text-center text-2xl mx-auto">
+      No postings liked! :(
+    </div>
+  )}
+</div>
       </div>
-      <div> </div>
     </div>
   );
 }

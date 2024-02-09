@@ -14,7 +14,7 @@ export const listingRouter = createTRPCRouter({
   getOne: publicProcedure
     .input(
       z.object({
-        id: z.string(), // Assuming the ID is a string, change it according to your schema
+        id: z.string(),
       }),
     )
     .query(async ({ ctx, input }) => {
@@ -22,6 +22,22 @@ export const listingRouter = createTRPCRouter({
         where: {
           id: input.id,
         },
+      });
+    }),
+    getOneWithUser: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      return ctx.db.listing.findUnique({
+        where: {
+          id: input.id,
+        },
+        include:{
+          createdBy: true,
+        }
       });
     }),
   filterByLocation: protectedProcedure
@@ -46,7 +62,49 @@ export const listingRouter = createTRPCRouter({
         },
       });
     }),
-  createOne: protectedProcedure
+    filterByGender: protectedProcedure
+    .input(
+      z.object({
+        gender: z.string(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      return ctx.db.listing.findMany({
+        where: {
+          OR: [
+            { preferredGender: input.gender },
+            { preferredGender: null },
+          ],
+        },
+      });
+    }),
+    filterByAge: protectedProcedure
+  .input(
+    z.object({
+      age: z.number(),
+    }),
+  )
+  .query(({ ctx, input }) => {
+    return ctx.db.listing.findMany({
+      where: {
+        AND: [
+          {
+            OR: [
+              { minAge: { lte: input.age } },
+              { minAge: null },
+            ],
+          },
+          {
+            OR: [
+              { maxAge: { gte: input.age } },
+              { maxAge: null },
+            ],
+          },
+        ],
+      },
+    });
+  }),
+      createOne: protectedProcedure
     .input(
       z.object({
         title: z.string().min(1),
@@ -55,7 +113,10 @@ export const listingRouter = createTRPCRouter({
         bathrooms: z.number().min(1),
         sharedSpace: z.boolean(),
         occupants: z.array(zodPersonSchema).optional(),
-      roomType: zodRoomTypeSchema.optional(),
+        roomType: zodRoomTypeSchema.optional(),
+        preferredGender: z.string().optional(),
+        minAge: z.number().optional(),  
+        maxAge: z.number().optional(),  
         longitude: z.number(),
         latitude: z.number(),
         descriptionTags: z.array(zodPrismaTypeSchema),
@@ -75,8 +136,11 @@ export const listingRouter = createTRPCRouter({
           bedrooms: input.bedrooms,
           bathrooms: input.bathrooms,
           sharedSpace: input.sharedSpace,
-          occupants: input.occupants,
+          occupants: input.occupants, 
           roomType: input.roomType,
+          preferredGender: input.preferredGender,
+          minAge: input.minAge,
+          maxAge: input.maxAge,
           location: {
             type: "Point",
             coordinates: [input.longitude, input.latitude],
@@ -91,4 +155,23 @@ export const listingRouter = createTRPCRouter({
         },
       });
     }),
+  deleteOne: protectedProcedure.input(
+    z.object({
+      id: z.string(),
+    }),
+  )
+    .mutation(async ({ ctx, input }) => {
+
+      return ctx.db.listing.delete({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
+  updateOne: protectedProcedure.input(
+    z.object({
+      
+    })
+  )
 });
+

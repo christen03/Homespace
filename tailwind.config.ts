@@ -9,10 +9,10 @@ export default {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       colors: {
-        accent: "#F5D769",
-        secondary: "#69A297",
+        accent: "#894438",
+        secondary: "#894438",
         secondaryDark: "#486F66",
-        colorbng: "#253237",
+        colorbng: "#FCF9F0",
       },
     },
   },
