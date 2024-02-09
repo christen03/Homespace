@@ -36,7 +36,7 @@ export const sendEmailRouter = createTRPCRouter({
     }
     h1 {
       color: #333;
-      font-size: 24px;
+      font-size: 24px;  
       margin-top: 0;
     }
     p {
