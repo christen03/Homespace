@@ -14,17 +14,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id          String   @id @default(auto()) @map("_id") @db.ObjectId
-    name        String
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-    createdById String   @db.ObjectId
-    createdBy   User     @relation(fields: [createdById], references: [id])
-
-    @@index([name])
-}
-
 // Necessary for Next auth
 model Account {
     id                String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -61,13 +50,15 @@ model User {
     name          String
     email         String   @unique
     emailVerified DateTime? @map("email_verified")
-    phoneNumber   String
-    biography     String
-    location      String
+    phoneNumber   String?
+    biography     String?
     image         String?
+    contract      Bytes?
+    verified      Boolean?
+    socials       String[]
+    liked         String[]
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
     listings      Listing[]
     
     @@map("users")
@@ -95,7 +86,7 @@ model Listing {
     imageSrcs       String[]
     createdById     String
     createdBy       User @relation(fields: [createdById], references: [id])
-    createdAt DateTime @default(now())
+    createdAt       DateTime @default(now())
     @@map("listings")
 }
 

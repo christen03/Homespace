@@ -5,6 +5,7 @@ import Image from "next/image";
 import "./navbar.css";
 import { useSession } from "next-auth/react";
 import def from "../../../public/default.jpg";
+import { api } from "~/trpc/react";
 import { FaM, FaMarsAndVenus } from "react-icons/fa6";
 import logo from "../../../public/logo.png";
 import { useState } from "react";
@@ -15,7 +16,8 @@ function Navbar() {
   // Assuming getServerAuthSession returns an object with user information
   const { data: session, status, update } = useSession();
   const [showMenu, setShowMenu] = useState(false);
-  const router = useRouter();
+  const getUserData = api.users.getCurrentUser.useQuery();
+  const uData = getUserData.data;
 
   function toggleMenu() {
     if (!showMenu) {
@@ -24,6 +26,12 @@ function Navbar() {
       setShowMenu(false);
     }
   }
+
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
 
   return (
     <nav className="navbar">
@@ -76,8 +84,8 @@ function Navbar() {
               About
             </Link>
           </div>
-          {/* <div className="px-16">
-            <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 py-3">
+          <div className="px-16">
+            <div className="flex items-center justify-center gap-1 rounded-[100px] border-2 border-secondary bg-colorbng py-3 hover:bg-secondary">
               <Link
                 href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
@@ -85,12 +93,12 @@ function Navbar() {
                 Add Your Apartment
               </Link>
             </div>
-          </div> */}
+          </div>
 
-          {/* <div className="mt-2 text-center">
+          <div className="mt-2 text-center">
             {session && session.user && session.user.image ? (
               <div className="flex items-center justify-center gap-1 p-1">
-                <Link href={"/api/auth/signout"}>
+                <Link href={"/settings"}>
                   <Image
                     src={session.user.image}
                     width={38}
@@ -101,7 +109,7 @@ function Navbar() {
                 </Link>
               </div>
             ) : (
-              <div className="bg-secondary hover:bg-secondaryDark flex items-center justify-center rounded-[100px] px-6 py-3">
+              <div className="flex items-center justify-center rounded-[100px] bg-secondary px-6 py-3 hover:bg-secondaryDark">
                 <Link
                   href={"/api/auth/signin"}
                   className="text-center text-base font-semibold leading-snug tracking-tight text-black"
@@ -110,7 +118,7 @@ function Navbar() {
                 </Link>
               </div>
             )}
-          </div> */}
+          </div>
         </div>
 
         <div className="inline-flex hidden w-full items-center justify-center gap-[33px] bg-colorbng px-12 py-4 sm:flex">
@@ -134,48 +142,90 @@ function Navbar() {
           <div className="flex shrink grow  basis-0 items-start justify-end gap-6">
             <div className="flex items-center justify-center gap-1 px-4 py-3">
               <Link
+                href="/dashboard"
+                className="text-center text-base font-semibold leading-snug tracking-tight text-white"
+              >
+                Dashboard
+              </Link>
+            </div>
+            <div className="flex items-center justify-center gap-1 px-4 py-3">
+              <Link
                 href="/about"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
               >
                 About
               </Link>
             </div>
-            {/* <div className="border-secondary bg-colorbng hover:bg-secondary flex items-center justify-center gap-1 rounded-[100px] border-2 px-6 py-3">
+            <div className="flex items-center justify-center gap-1 rounded-[100px] border-2 border-secondary bg-colorbng px-6 py-3 hover:bg-secondary">
               <Link
                 href="/create-listing"
                 className="text-center text-base font-semibold leading-snug tracking-tight text-white"
               >
                 Add Your Apartment
               </Link>
-            </div> */}
-            {/* <div className="flex items-center justify-center">
-              <div>
-                <div className="text-center">
-                  {session && session.user && session.user.image ? (
-                    <div className="bg-secondary gap-1 rounded-full border border-gray-500 p-[2px]">
-                      <Link href={"/api/auth/signout"}>
-                        <Image
-                          src={session.user.image}
-                          width={38}
-                          height={38}
-                          alt="Profile Image"
-                          className="rounded-full" // Apply Tailwind's rounded-full class
-                        />
-                      </Link>
+            </div>
+            <div className="relative flex items-center justify-center">
+              {session && session.user && session.user.image ? (
+                <div
+                  onClick={toggleDropdown}
+                  className="cursor-pointer gap-1 rounded-full border border-gray-500 bg-secondary p-[2px]"
+                >
+                  <div className="flex items-center">
+                    {/* Three lines next to the profile image */}
+                    <div className="ml-3 mr-2">
+                      <div className="h-0.5 w-4 rounded-full bg-white"></div>
+                      <div className="my-0.5 h-0.5 w-4 rounded-full bg-white"></div>
+                      <div className="h-0.5 w-4 rounded-full bg-white"></div>
                     </div>
-                  ) : (
-                    <div className="bg-secondary hover:bg-secondaryDark flex items-center justify-center rounded-[100px] px-6 py-3">
+                    <Image
+                      src={session.user.image}
+                      width={38}
+                      height={38}
+                      alt="Profile Image"
+                      className="rounded-full"
+                    />
+                  </div>
+                  {/* Dropdown Menu */}
+                  {isDropdownVisible && (
+                    <div className="absolute right-0 top-full mt-2 w-40 rounded-md bg-white shadow-lg">
                       <Link
-                        href={"/api/auth/signin"}
-                        className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+                        href={"/user/" + uData?.id}
+                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
                       >
-                        Sign in
+                        Profile
+                      </Link>
+                      <Link
+                        href="/settings"
+                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Account Settings
+                      </Link>
+                      <Link
+                        href="/liked-listings"
+                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Liked Listings
+                      </Link>
+                      <Link
+                        href="/api/auth/signout"
+                        className="block px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Sign Out
                       </Link>
                     </div>
                   )}
                 </div>
-              </div>
-            </div> */}
+              ) : (
+                <div className="flex items-center justify-center rounded-[100px] bg-secondary px-6 py-3 hover:bg-secondaryDark">
+                  <Link
+                    href={"/api/auth/signin"}
+                    className="text-center text-base font-semibold leading-snug tracking-tight text-black"
+                  >
+                    Sign in
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
