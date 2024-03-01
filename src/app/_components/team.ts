@@ -4,6 +4,7 @@ import nhathan from "../../../public/nhathan.jpg";
 import shauna from "../../../public/shauna.jpg";
 import def from "../../../public/default.jpg";
 import annie from "../../../public/annie.jpg";
+import aska from "../../../public/Aska.jpg";
 import { type StaticImageData } from "next/image";
 
 export interface TeamMember {
@@ -54,6 +55,15 @@ const teamMemberData: TeamMember[] = [
     college: "B.S. Cognitive Science",
     role: "Product Design",
     linkedin: "https://www.linkedin.com/in/annie-wen-xinge/",
+    curPosition: "",
+  },
+  {
+    name: "Aska Kunita Demirci",
+    headshot: aska,
+    college: "B.S. Cognitive Science",
+    role: "Product Design",
+    linkedin:
+      "https://www.linkedin.com/in/aska-kunita-demirci-81194421b/?originalSubdomain=tr",
     curPosition: "",
   },
 ];
